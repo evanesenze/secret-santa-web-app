@@ -1,0 +1,47 @@
+.main_view {
+    height: 100%;
+    padding: 5% 10%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-image: url('../../../assets/man.png');
+    background-repeat: no-repeat;
+    background-position: left 10% center;
+}
+
+.main_view span {
+    /* position: absolute; */
+    font-size: 5rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #EE7E21;
+    filter: brightness();
+    /* background-image: -webkit-gradient( linear, left center, right center, color-stop(0, #F7C655), color-stop(1, #EE7E21));
+    /* background-image: gradient( linear, left center, right center, color-stop(0, #F7C655), color-stop(1, #EE7E21)); /
+    color:transparent;
+    -webkit-background-clip: text; */
+}
+
+.main_view span::before {
+    content: "Тайный";
+    position: absolute;
+    top: -210%;
+    right: 0;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 0.4px #999;
+    text-stroke: 0.5px white; 
+    font-size: 10rem;
+}
+
+.main_view span::after {
+    content: "Санта";
+    position: absolute;
+    bottom: -210%;
+    right: 0;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 0.4px #999;
+    text-stroke: 0.5px white; 
+    font-size: 10rem;
+}

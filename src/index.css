@@ -1,13 +1,69 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html, body {
+  width: 100%;
+  height: 100%;
 }
+
+#root {
+  height: 100%;
+  background-image: url('./assets/background.png');
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.main_header{
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
+
+  /* margin-bottom: 20px; */
+}
+
+.main_header__logo {
+  padding: 20px 20px 0;
+  height: 100%;
+}
+
+.main_header__sign_up {
+  position: relative;
+  width: 10%;
+  height: 80%;
+  padding: 20px 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main_header__sign_up span {
+  color: #4295DE;
+  font-size: 26px;
+  z-index: 1;
+}
+
+.main_header__sign_up::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 200%;
+  background: linear-gradient(to left bottom, #CADAE1,#CADAE1, #EBECEE, #EBECEE);
+  /* background-color: aqua; */
+  border-radius: 26px;
+  top: -80%;
+  right: 0;
+  /* bottom: 30%;
+  left: 30%; */
+  transform: rotate(-15deg);
+}
+
+.main_content {
+  height: 90%
+}
+
