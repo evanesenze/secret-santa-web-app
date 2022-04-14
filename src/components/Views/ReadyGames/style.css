@@ -1,0 +1,60 @@
+.games_view {
+    height: 85%;
+    padding: 1% 2%;
+    margin: 64px;
+    background: #FFFFFF;
+    background-color: rgb(255, 255, 255, 0.6);
+    border-radius: 30px;
+}
+
+.rectangle {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.games {
+    font-weight: 700px;
+    font-size: 40px;
+    line-height: 68px;
+    letter-spacing: 0.1em;
+    color: #1D71B8;
+}
+
+.games_button {
+    background-color: #FFA755;
+    border-radius: 15px;
+    color: #FFFFFF;
+    border: none;
+    padding: 8px 14px;
+    font-size: 24px;
+    letter-spacing: 0.04em;
+}
+
+.container {
+    margin-top: 20px;
+    margin-right: 32px;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.game_1 {
+    width: 150px;
+    height: 150px;
+    background: #FFFFFF;
+    border: 1px solid #B1DDFF;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-image: url('../../../assets/snowman.png');
+    background-repeat: no-repeat;
+    background-position: center 20%;
+}
+
+.game_1 span {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 13px;
+    text-align: center;
+    letter-spacing: -0.02em;
+    color: #4295DE;
+}
