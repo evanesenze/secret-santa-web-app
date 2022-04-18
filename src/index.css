@@ -67,3 +67,47 @@ html, body {
   height: 90%
 }
 
+.main_content__layout {
+  height: 85%;
+  padding: 1% 2%;
+  margin: 64px;
+  background: #FFFFFF;
+  background-color: rgb(255, 255, 255, 0.6);
+  border-radius: 30px;
+  
+}
+
+.main_content__layout_header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+}
+
+.default__btn {
+  font-size: 24px;
+  width:max-content;
+  padding: .5% 2%;
+  border: 0;
+  border-radius: 3px;
+  background-color: #FFA755;
+  color: white;
+}
+
+
+.default_input__label{
+  font-size: 16px;
+  color:#4295DE;
+  font-weight: 700;
+}
+
+.default_input{
+  width: 400px;
+  height: 48px;
+  border: 1px solid #B1DDFF;
+  border-radius: 6px;
+  outline: none;
+  padding: 0 15px;
+}
+
+.default_input::placeholder {
+  color: #CBCBCB;
+}
