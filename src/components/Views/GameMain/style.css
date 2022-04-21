@@ -1,0 +1,33 @@
+.game_main_content {
+    height: 100%;
+    padding: 1% 5%;
+    overflow-y: auto;
+}
+
+.info_card__group{
+    display: flex;
+    justify-content: space-between;
+}
+
+.game_main_content__my_wishes {
+    margin-top: 4%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+
+.game_main_content__my_wishes_text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 20%;
+    font-size: 18px;
+    color: #4295DE;
+    width: 60% !important;
+}
+
+.game_main_content__players {
+    display: grid;
+    grid-gap: 12px;
+    grid-template-columns: repeat(auto-fill, 90px);
+    margin-top: 1%;
+}

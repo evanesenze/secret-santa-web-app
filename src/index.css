@@ -85,7 +85,7 @@ html, body {
 .default__btn {
   font-size: 24px;
   width:max-content;
-  padding: .5% 2%;
+  padding: 5px 10px;
   border: 0;
   border-radius: 3px;
   background-color: #FFA755;
@@ -110,4 +110,52 @@ html, body {
 
 .default_input::placeholder {
   color: #CBCBCB;
+}
+
+.default_player_card {
+  border: 1px solid #B1DDFF;
+  border-radius: 7px;
+  width: 90px;
+  height: 90px;
+}
+
+.default_player_card__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+}
+
+.default_player_card__name {
+  height: 20%;
+  font-size: 16px;
+  color:#4295DE;
+  text-align: center;
+}
+
+.default_info_card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #B1DDFF;
+  border-radius: 10px;
+  width: 200px;
+  height: 110px;
+  color: #1D71B8;
+}
+
+
+
+.default_info_card__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70%;
+  font-size: 48px;
+}
+
+.default_info_card__description {
+  height: 30%;
+  font-size: 0.9rem;
+  text-align: center;
+  padding-bottom: 5px;
 }

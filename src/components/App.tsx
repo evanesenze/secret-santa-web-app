@@ -5,13 +5,17 @@ import Home from './Views/Home';
 import Games from './Views/Games';
 import ReadyGames from './Views/ReadyGames';
 import Wishes from './Views/Wishes';
+import GameMain from './Views/GameMain';
+import DesignatedUser from './Views/DesignatedUser';
 
 function App() {
   return (
     <Header >
-      <Wishes />
+      {/* <DesignatedUser /> */}
+      {/* <GameMain /> */}
+      {/* <Wishes /> */}
       {/* <ReadyGames /> */}
-      {/* <Main /> */}
+      <Main />
     </Header> 
   );
 }
