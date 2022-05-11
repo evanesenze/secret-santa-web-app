@@ -61,3 +61,45 @@
   align-items: flex-end;
   color: #1d71b8;
 }
+
+@media screen and (max-width: 991px) {
+  .main_view__title {
+    font-size: 3rem;
+  }
+  .main_view {
+    padding: 5% 0;
+    align-items: center;
+    /* justify-content: flex-start; */
+    background-size: 50%;
+    background-position: bottom center;
+  }
+
+  .main_view__info_text {
+    display: none;
+  }
+
+  .main_view__title {
+    margin-top: 15%;
+    position: relative;
+    top: 0;
+  }
+
+  .main_view__info {
+    margin-top: 15%;
+    position: relative;
+    top: 0;
+    width: 90%;
+  }
+
+  .main_view__title::before,
+  .main_view__title::after {
+    font-size: 8rem;
+  }
+  .main_view__title::before {
+    top: -250%;
+  }
+  .main_view__title::after {
+    bottom: -250%;
+    right: -40%;
+  }
+}

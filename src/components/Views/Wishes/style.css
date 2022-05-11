@@ -47,3 +47,10 @@
   align-self: flex-end;
   bottom: 0;
 }
+
+/* Планшет */
+@media screen and (max-width: 991px) {
+  .wishes_content__form {
+    width: 97%;
+  }
+}

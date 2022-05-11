@@ -89,7 +89,8 @@ body {
 }
 
 .default__btn {
-  font-size: 24px;
+  font-size: 14px;
+  height: 28px;
   padding: 0.4rem 0.8rem;
   border: 0;
   border-radius: 0.5rem;
@@ -107,8 +108,9 @@ body {
   margin-top: 0.2rem;
   width: 100%;
   height: 3rem;
+  background-color: white;
   border: 1px solid #b1ddff;
-  border-radius: 6px;
+  border-radius: 0.6rem;
   outline: none;
   padding: 0 15px;
 }
@@ -122,12 +124,18 @@ body {
   border-radius: 7px;
   width: 90px;
   height: 90px;
+  background-color: white;
 }
 
 .default_player_card__image {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 80%;
+}
+
+.default_player_card__image img {
+  width: 80%;
   height: 80%;
 }
 
@@ -143,9 +151,13 @@ body {
   flex-direction: column;
   border: 1px solid #b1ddff;
   border-radius: 10px;
-  width: 200px;
   height: 110px;
+  width: 100%;
+  /* height: 100%; */
+  /* width: 200px; */
+  /* height: 110px; */
   color: #1d71b8;
+  background-color: white;
 }
 
 .default_info_card__title {
@@ -161,4 +173,41 @@ body {
   font-size: 0.9rem;
   text-align: center;
   padding-bottom: 5px;
+}
+
+/* Планшет */
+@media screen and (max-width: 991px) {
+  .default__btn {
+    font-size: 14px;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .main_content__layout {
+    height: 100%;
+    width: 100%;
+    max-height: none;
+    margin: 0;
+    margin-top: 30px;
+  }
+
+  .main_content__layout_header {
+    margin-top: 1rem;
+  }
+
+  .default_player_card {
+    width: 80px;
+    height: 80px;
+  }
+
+  .default_info_card {
+    height: 80px;
+  }
+}
+
+/* Телефон */
+@media screen and (max-width: 479px) {
+  .default_player_card {
+    width: 70px;
+    height: 70px;
+  }
 }

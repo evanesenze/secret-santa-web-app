@@ -1,33 +1,45 @@
 .game_main_content {
-    height: 100%;
-    padding: 1% 5%;
-    overflow-y: auto;
+  height: 100%;
+  padding: 1% 5%;
+  overflow-y: auto;
 }
 
-.info_card__group{
-    display: flex;
-    justify-content: space-between;
+.info_card__group {
+  display: grid;
+  /* display: flex; */
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 2rem;
+  /* justify-content: space-between; */
 }
 
 .game_main_content__my_wishes {
-    margin-top: 4%;
-    display: grid;
-    grid-template-columns: 1fr auto;
+  margin: 3% 0;
+}
+
+.game_main_content__edit_wishes_btn {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .game_main_content__my_wishes_text {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 20%;
-    font-size: 18px;
-    color: #4295DE;
-    width: 60% !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: #4295de;
 }
 
 .game_main_content__players {
-    display: grid;
-    grid-gap: 12px;
-    grid-template-columns: repeat(auto-fill, 90px);
-    margin-top: 1%;
+  display: grid;
+  grid-gap: 12px;
+  grid-template-columns: repeat(auto-fill, 90px);
+  margin-top: 1%;
+}
+
+@media screen and (max-width: 991px) {
+  .info_card__group {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 3rem 6rem;
+    padding: 0 4rem;
+  }
 }

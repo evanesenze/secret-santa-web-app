@@ -11,7 +11,7 @@ const Main: FC = () => {
           Вас пригласили участвовать <br />в игре “Название игры”
         </span>
         <button style={{ marginTop: '3%' }} className="default__btn">
-          принять
+          принять приглашение
         </button>
         {/* <button className="default__btn">перейти к игре</button> */}
       </div>
