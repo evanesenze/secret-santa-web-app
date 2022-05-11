@@ -1,0 +1,29 @@
+.designated_user_content {
+    width: 60%;
+    margin: 0 20%;
+}
+
+.designated_user_content_info {
+    display: flex;
+    justify-content: space-between;
+    height: 20%;
+}
+
+.designated_user_content_info_text {
+    width: 80%;
+}
+
+.designated_user_content_info_text div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.designated_user_content_info_text div span {
+    color: #4295DE;
+    font-size: 18px;
+}   
+
+.designated_user_content_info__image{ 
+    width: 20%;
+}
