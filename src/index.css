@@ -5,7 +5,8 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
 }
@@ -19,7 +20,7 @@ html, body {
   overflow: hidden;
 }
 
-.main_header{
+.main_header {
   height: 10%;
   display: flex;
   justify-content: space-between;
@@ -43,17 +44,17 @@ html, body {
 }
 
 .main_header__sign_up span {
-  color: #4295DE;
+  color: #4295de;
   font-size: 26px;
   z-index: 1;
 }
 
 .main_header__sign_up::after {
   position: absolute;
-  content: "";
+  content: '';
   width: 100%;
   height: 200%;
-  background: linear-gradient(to left bottom, #CADAE1,#CADAE1, #EBECEE, #EBECEE);
+  background: linear-gradient(to left bottom, #cadae1, #cadae1, #ebecee, #ebecee);
   /* background-color: aqua; */
   border-radius: 26px;
   top: -80%;
@@ -64,17 +65,22 @@ html, body {
 }
 
 .main_content {
-  height: 90%
+  height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .main_content__layout {
   height: 85%;
+  width: 90%;
+  max-width: 1080px;
+  max-height: 600px;
   padding: 1% 2%;
   margin: 64px;
-  background: #FFFFFF;
+  background: #ffffff;
   background-color: rgb(255, 255, 255, 0.6);
   border-radius: 30px;
-  
 }
 
 .main_content__layout_header {
@@ -84,30 +90,29 @@ html, body {
 
 .default__btn {
   font-size: 24px;
-  width:max-content;
-  padding: .5% 2%;
+  padding: 0.4rem 0.8rem;
   border: 0;
-  border-radius: 3px;
-  background-color: #FFA755;
+  border-radius: 0.5rem;
+  background-color: #ffa755;
   color: white;
 }
 
-
-.default_input__label{
+.default_input__label {
   font-size: 16px;
-  color:#4295DE;
+  color: #4295de;
   font-weight: 700;
 }
 
-.default_input{
-  width: 400px;
-  height: 48px;
-  border: 1px solid #B1DDFF;
+.default_input {
+  margin-top: 0.2rem;
+  width: 100%;
+  height: 3rem;
+  border: 1px solid #b1ddff;
   border-radius: 6px;
   outline: none;
   padding: 0 15px;
 }
 
 .default_input::placeholder {
-  color: #CBCBCB;
+  color: #cbcbcb;
 }
