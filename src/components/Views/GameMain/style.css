@@ -42,6 +42,10 @@
     grid-gap: 3rem 6rem;
     padding: 0 4rem;
   }
+
+  .game_main_content__my_wishes_text {
+    font-size: 14px;
+  }
 }
 
 @media screen and (max-width: 479px) {
