@@ -24,12 +24,15 @@ body {
   height: 10%;
   display: flex;
   justify-content: space-between;
-
+  overflow: hidden;
   /* margin-bottom: 20px; */
 }
 
 .main_header__logo {
-  padding: 20px 20px 0;
+  padding: 1% 1% 0;
+  height: 100%;
+}
+.main_header__logo svg {
   height: 100%;
 }
 
@@ -69,6 +72,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .main_content__layout {
@@ -177,9 +181,41 @@ body {
 
 /* Планшет */
 @media screen and (max-width: 991px) {
+  .default_info_card__title {
+    font-size: 24px;
+  }
+  .default_info_card__description {
+    font-size: 10px;
+  }
+
+  .default_player_card__name {
+    font-size: 12px;
+  }
+
+  /* .main_header__logo {
+    padding: 1% 1% 0;
+  } */
+
+  .default_input {
+    height: 2rem;
+  }
+
+  .default_input::placeholder {
+    font-size: 16px;
+  }
+
+  .main_header__sign_up span {
+    font-size: 14px;
+  }
+
+  .main_header__logo svg {
+    height: 95%;
+  }
+
   .default__btn {
     font-size: 14px;
-    padding: 0.2rem 0.5rem;
+    padding: 0.1rem 0.2rem;
+    height: 20px;
   }
 
   .main_content__layout {
