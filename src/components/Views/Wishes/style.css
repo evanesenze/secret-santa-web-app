@@ -53,4 +53,8 @@
   .wishes_content__form {
     width: 97%;
   }
+
+  .wishes_content__title {
+    font-size: 24px;
+  }
 }
