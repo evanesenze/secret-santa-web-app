@@ -206,6 +206,41 @@ body {
 
 /* Телефон */
 @media screen and (max-width: 479px) {
+  .main_header__logo {
+    padding: 5px 5px 0;
+
+  }
+
+  .main_header__sign_up {
+    width: 20%;
+    padding: 10px 10px 0;
+  }
+
+  .main_header__sign_up span {
+    font-size: 14px;
+  }
+
+  .main_header__sign_up::after {
+    background: linear-gradient(241.84deg, #ffffff 10.53%, #EBECEE 82.8%);
+  }
+
+  .default__btn {
+    font-size: 14px;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .main_content__layout {
+    height: 100%;
+    width: 100%;
+    max-height: none;
+    margin: 0;
+    margin-top: 72px;
+  }
+
+  .main_content__layout_header {
+    margin: 0.4rem;
+  }
+
   .default_player_card {
     width: 70px;
     height: 70px;

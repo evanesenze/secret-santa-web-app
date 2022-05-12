@@ -43,3 +43,18 @@
     padding: 0 4rem;
   }
 }
+
+@media screen and (max-width: 479px) {
+  .info_card__group {
+    grid-gap: 1rem 2rem;
+    padding: 10px 0;
+  }
+
+  .game_main_content__my_wishes {
+    margin-top: 24px;
+  }
+
+  .game_main_content__players {
+    margin-top: 32px;
+  }
+}

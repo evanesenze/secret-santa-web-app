@@ -54,3 +54,21 @@
     width: 97%;
   }
 }
+
+@media screen and (max-width: 479px) {
+  .wishes_content__form {
+    width: 85%;
+  }
+
+  .wishes_content__inputs_group {
+    grid-template-columns: 1fr;
+    grid-gap: 5%;
+  }
+
+  /* .wishes_content__group_item {
+    width: 100%;
+    height: 20px;
+    margin-top: 2%;
+  } */
+
+}

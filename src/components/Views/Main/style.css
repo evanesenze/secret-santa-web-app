@@ -102,4 +102,23 @@
     bottom: -250%;
     right: -40%;
   }
+
+  @media screen and (max-width: 479px) {
+    .main_view__title {
+      font-size: 35px;
+    }
+
+    .main_view__title::before,
+    .main_view__title::after {
+      font-size: 4.0rem;
+    }
+    .main_view__title::before {
+      top: -30%;
+      right: 5%;
+    }
+    .main_view__title::after {
+      bottom: -50%;
+      right: 25%;
+    }
+  }
 }
