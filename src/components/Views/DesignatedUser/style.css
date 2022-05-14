@@ -47,3 +47,21 @@
     text-align: center;
   }
 }
+
+@media screen and (orientation: landscape) {
+  .designated_user_content_info_text div span {
+    font-size: 14px !important;
+    text-align: center;
+  }
+
+  .designated_user_content {
+    margin: 0 7%;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .designated_user_content_info_text {
+    width: 85%;
+    height: 50%;
+  }
+}

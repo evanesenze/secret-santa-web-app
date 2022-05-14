@@ -53,8 +53,8 @@ function App() {
     <Header>
       {/* <DesignatedUser /> */}
       {/* <GameMain /> */}
-      {/* <Wishes /> */}
-      <Main />
+      <Wishes />
+      {/* <Main /> */}
     </Header>
   );
 }

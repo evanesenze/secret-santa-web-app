@@ -50,7 +50,8 @@
 
 @media screen and (max-width: 479px) {
   .info_card__group {
-    grid-gap: 1rem 2rem;
+    margin: 0 2%;
+    grid-gap: 0.5rem 1.5rem;
     padding: 10px 0;
   }
 
@@ -60,5 +61,19 @@
 
   .game_main_content__players {
     margin-top: 32px;
+  }
+}
+
+@media screen and (orientation: landscape) {
+  .info_card__group {
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 8px;
+    padding: 0;
+  }
+
+  .game_main_content__players {
+    margin-left: -5%;
+    margin-top: -5%;
+    grid-gap: 48px;
   }
 }
