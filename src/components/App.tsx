@@ -53,11 +53,14 @@ function App() {
     <Header>
       {/* <DesignatedUser /> */}
       {/* <GameMain /> */}
-      <Wishes />
+      {/* <Wishes /> */}
       {/* <Main /> */}
+
+      {/* <Games /> */}
+      {/* <ReadyGames /> */}
+      <Home />
     </Header>
   );
 }
 
-// {/* <ReadyGames /> */}
 export default App;

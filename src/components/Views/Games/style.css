@@ -1,13 +1,13 @@
 .games_view {
-  height: 85%;
-  padding: 1% 2%;
+  /* height: 85%; */
+  /* padding: 1% 2%; */
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin: 64px;
-  background: #ffffff;
-  background-color: rgb(255, 255, 255, 0.6);
-  border-radius: 30px;
+  /* margin: 64px; */
+  /* background: #ffffff; */
+  /* background-color: rgb(255, 255, 255, 0.6); */
+  /* border-radius: 30px; */
 }
 
 .games {
