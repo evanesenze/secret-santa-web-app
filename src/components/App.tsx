@@ -4,10 +4,17 @@ import Main from './Views/Main';
 import Home from './Views/Home';
 import Games from './Views/Games';
 import ReadyGames from './Views/ReadyGames';
+<<<<<<< HEAD
 import Wishes from './Views/Wishes';
 import GameMain from './Views/GameMain';
 import DesignatedUser from './Views/DesignatedUser';
 import { deleteEvent, editEvent, getEvents, saveEvent } from '../services/Server';
+=======
+import GameWasCreated from './Views/GameWasCreated';
+import GameWasCreatedWithMembers from './Views/GameWasCreatedWithMembers';
+import FindMember from './Views/FindMember';
+import CreateGame from './Views/CreateGame';
+>>>>>>> vachik/secret-santa-web-app
 
 function App() {
   const f = async () => {
@@ -50,10 +57,21 @@ function App() {
   };
 
   return (
+<<<<<<< HEAD
     <Header>
       {/* <DesignatedUser /> */}
       {/* <GameMain /> */}
       <Wishes />
+=======
+    <Header >
+      <CreateGame />
+      {/* <FindMember /> */}
+      {/* <Games /> */}
+      {/* <GameWasCreated /> */}
+      {/* <GameWasCreatedWithMembers /> */}
+      {/* <Home /> */}
+      {/* <ReadyGames /> */}
+>>>>>>> vachik/secret-santa-web-app
       {/* <Main /> */}
     </Header>
   );
