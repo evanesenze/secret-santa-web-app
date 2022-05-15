@@ -114,7 +114,7 @@
     align-items: flex-start;
   }
 
-  .main_view__title{
+  .main_view__title {
     margin-top: 20%;
     margin-left: 2%;
     font-size: 10vw;
@@ -144,7 +144,7 @@
   }
 }
 
-@media screen and (orientation: landscape) {
+/* @media screen and (orientation: landscape) {
   .main_view {
     flex-direction: column;
     justify-content: flex-end;
@@ -179,4 +179,4 @@
     width: 200px;
     height: 30px;
   }
-}
+} */

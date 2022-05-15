@@ -3,7 +3,7 @@ const serverUrl = 'https://localhost:5001/';
 const execute = async (uri: string, config: RequestInit) => {
   return fetch(serverUrl + uri, config)
     .then(async (res) => {
-      console.log(res);
+      // console.log(res);
       if (res.status === 200) return { ok: true, response: await res.json() };
       return { ok: false, ...(await res.json()) };
     })
@@ -43,12 +43,14 @@ const editEvent = (newEvent: IExistEvent) => {
       'Content-Type': 'application/json',
     },
   };
-  return execute(`event/`, config);
+  return execute(`event/${newEvent.id}`, config);
 };
 
 const getEvents = (memberId?: string) => (memberId ? getEvent(`events/${memberId}`) : getEvent(`events`));
 
-const login = (email: string, password: string) => {};
+const login = () => {
+  throw new Error();
+};
 
 const getMemberWishes = (memberId: string, eventId: string) => {
   const config: RequestInit = {
@@ -79,15 +81,8 @@ const editMemberWishes = (memberId: string, eventId: string, wishes: IWishes) =>
   return execute(`member/${memberId}/wishes/${eventId}`, config);
 };
 
-const exitEvent = (memberId: string, eventId: string) => {
-  // const config: RequestInit = {
-  //   method: 'PUT',
-  //   body: JSON.stringify(wishes),
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  // };
-  // return execute(`member/${memberId}/exit/${eventId}`, config);
+const exitEvent = () => {
+  throw new Error();
 };
 
-export { getEvents, saveEvent, getEvent, deleteEvent, editEvent };
+export { getEvents, saveEvent, getEvent, deleteEvent, editEvent, login, getMemberWishes, saveMemberWishes, editMemberWishes, exitEvent };

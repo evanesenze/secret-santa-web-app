@@ -1,8 +1,8 @@
 interface IEvent {
   id?: string;
   description: string;
-  endRegistration: Date;
-  endEvent: Date;
+  endRegistration: string;
+  endEvent: string;
   sumPrice?: number;
   sendFriends?: boolean;
   tracking?: boolean;

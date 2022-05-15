@@ -179,6 +179,15 @@ body {
   padding-bottom: 5px;
 }
 
+.main_content__layout_header {
+  max-height: 10%;
+}
+
+.main_content_layout_content {
+  padding: 1%;
+  height: 90%;
+}
+
 /* Планшет */
 @media screen and (max-width: 991px) {
   .default_info_card__title {
@@ -242,7 +251,6 @@ body {
 
 /* Телефон */
 @media screen and (max-width: 479px) {
-
   .main_content {
     height: 100%;
   }
@@ -298,7 +306,7 @@ body {
     font-size: 34px;
   }
 }
-
+/* 
 @media screen and (orientation: landscape) {
   .main_content__layout {
     margin-top: 50px;
@@ -339,8 +347,8 @@ body {
   .default_info_card__description {
     font-size: 12px;
   }
-  
+
   .default_input {
     width: 100%;
   }
-}
+} */
