@@ -1,13 +1,17 @@
 import React, { FC } from 'react';
-
+import { Link } from 'react-router-dom';
 import './style.css';
 
 const Home: FC = () => {
   return (
     <div className="home_view">
       <span>Тайный санта</span>
-      <button className="create_button">создать</button>
-      <button className="games_button">игры</button>
+      <Link className="create_button" to="/admin/createGame">
+        создать
+      </Link>
+      <Link className="games_button" to="/admin/games">
+        игры
+      </Link>
     </div>
   );
 };

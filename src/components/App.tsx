@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './Header';
 import Main from './Views/Main';
 import Home from './Views/Home';
@@ -9,6 +10,8 @@ import GameMain from './Views/GameMain';
 import DesignatedUser from './Views/DesignatedUser';
 import { deleteEvent, editEvent, getEvents, saveEvent } from '../services/Server';
 
+import Create from './Views/Create';
+
 function App() {
   const f = async () => {
     const res = await getEvents();
@@ -18,8 +21,8 @@ function App() {
   const f2 = async () => {
     const event: IEvent = {
       description: 'test22',
-      endEvent: '2022-05-12T08:20:39.827Z',
-      endRegistration: '2022-05-12T08:20:39.827Z',
+      endEvent: new Date(),
+      endRegistration: new Date(),
       reshuffle: true,
       sendFriends: false,
       sumPrice: 199,
@@ -37,8 +40,8 @@ function App() {
   const f4 = async () => {
     const event: IExistEvent = {
       description: 'test123123',
-      endEvent: '2022-05-12T09:35:21.351Z',
-      endRegistration: '2022-05-12T09:35:21.351Z',
+      endEvent: new Date(),
+      endRegistration: new Date(),
       id: 'e18d10ec-7ba9-436d-bf3e-1154b637a431',
       reshuffle: true,
       sendFriends: true,
@@ -50,16 +53,24 @@ function App() {
   };
 
   return (
-    <Header>
-      {/* <DesignatedUser /> */}
-      {/* <GameMain /> */}
-      {/* <Wishes /> */}
-      {/* <Main /> */}
+    <Router>
+      <Header>
+        <Routes>
+          <Route path="/admin" element={<Home />} />
+          <Route path="/admin/games" element={<ReadyGames />} />
+          <Route path="/admin/createGame" element={<Create />} />
+          <Route path="/" element={<Main />} />
+        </Routes>
+        {/* <DesignatedUser /> */}
+        {/* <GameMain /> */}
+        {/* <Wishes /> */}
+        {/* <Main /> */}
 
-      {/* <Games /> */}
-      {/* <ReadyGames /> */}
-      <Home />
-    </Header>
+        {/* <Games /> */}
+        {/* <ReadyGames /> */}
+        {/* <Home /> */}
+      </Header>
+    </Router>
   );
 }
 

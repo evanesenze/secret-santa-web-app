@@ -1,12 +1,12 @@
 interface IEvent {
   id?: string;
   description: string;
-  endRegistration: string;
-  endEvent: string;
-  sumPrice: number;
-  sendFriends: boolean;
-  tracking: boolean;
-  reshuffle: boolean;
+  endRegistration: Date;
+  endEvent: Date;
+  sumPrice?: number;
+  sendFriends?: boolean;
+  tracking?: boolean;
+  reshuffle?: boolean;
 }
 
 type IExistEvent = Required<IEvent>;
