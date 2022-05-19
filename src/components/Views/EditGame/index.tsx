@@ -67,19 +67,19 @@ const EditGame: React.FC = () => {
       <form onSubmit={handleSubmit(submit)}>
         <section className="inputs_container">
           <div className="input_zone">
-            <label>
+            <label className="titles_inputs">
               Название игры
-              <input className="input_title" type="text" placeholder="Например, Тайный Санта 2022" {...register('description', { required: true })} />
+              <input className="input_title_game" type="text" placeholder="Например, Тайный Санта 2022" {...register('description', { required: true })} />
             </label>
           </div>
           <div className="set_date_zone">
-            <label>
+            <label className="titles_inputs">
               Дата жеребьевки
               <input className="input_date" type="date" placeholder="дд/мм/гггг" {...register('endEvent', { required: true })} />
             </label>
           </div>
           <div className="send_date_zone">
-            <label>
+            <label className="titles_inputs">
               Отправить подарок до
               <input className="input_date" type="date" placeholder="дд/мм/гггг" {...register('endRegistration', { required: true })} />
             </label>
@@ -87,7 +87,7 @@ const EditGame: React.FC = () => {
         </section>
         <section className="recommended_cost_container">
           <div className="recommended_cost">
-            <p>Рекомендуемая стоимость подарка</p>
+            <p className="title_recommended_cost">Рекомендуемая стоимость подарка</p>
             <span>При включении опции участникам смогут увидеть рекомендуемую стоимость, для получения подарка</span>
           </div>
           <label className="switch">
@@ -96,8 +96,8 @@ const EditGame: React.FC = () => {
           </label>
           {showSumPrice && (
             <div className="gift_cost">
-              <p>Сумма подарка</p>
-              <input type="number" {...register('sumPrice', { required: true })} />
+              <p className="title_gift_cost">Сумма подарка</p>
+              <input className="input_gift_cost" type="number" {...register('sumPrice', { required: true })} />
               <select className="select_currency" name="currency" id="currency">
                 <option className="currency">Руб</option>
               </select>

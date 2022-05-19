@@ -22,7 +22,7 @@ const ReadyGames: FC = () => {
     <>
       <div className="rectangle">
         <h1 className="games">Игры</h1>
-        <Link to="/admin/createGame" className="create_game_button">
+        <Link to="/admin/createGame" className="create_button">
           создать
         </Link>
       </div>
@@ -30,7 +30,7 @@ const ReadyGames: FC = () => {
         {events.map((item: any) => (
           <div key={item.id} className="default_game_card" onClick={() => nav(`../admin/editGame/${item.id}`)}>
             <img className="default_game_card__img" src={cardImage} />
-            <span className="default_game_card__titile">{item.description}</span>
+            <span className="default_game_card__title">{item.description}</span>
           </div>
         ))}
       </div>

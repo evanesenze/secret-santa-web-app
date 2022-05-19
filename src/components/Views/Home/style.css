@@ -1,16 +1,17 @@
 .home_view {
   height: 90%;
-  padding: 10% 5%;
+  width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  /* background-image: url('../../../assets/woman.png'); */
+  background-image: url('../../../assets/woman.png');
   background-repeat: no-repeat;
   background-position: right 10% center;
 }
 
 .home_view span {
   font-size: 5rem;
+  padding: 5% 2%;
   text-transform: uppercase;
   font-weight: 600;
   filter: brightness();
@@ -23,12 +24,11 @@
 .home_view span::before {
   content: 'Тайный';
   position: absolute;
-  top: -220%;
-  left: 0;
+  top: -40%;
+  left: 2%;
   text-transform: uppercase;
   color: transparent;
   -webkit-text-stroke: 0.4px #999;
-  text-stroke: 0.5px white;
   font-size: 10rem;
   letter-spacing: 0.1em;
 }
@@ -36,38 +36,25 @@
 .home_view span::after {
   content: 'Санта';
   position: absolute;
-  bottom: -200%;
-  left: 0;
+  bottom: -40%;
+  left: 2%;
   text-transform: uppercase;
   color: transparent;
   -webkit-text-stroke: 0.4px #999;
-  text-stroke: 0.5px white;
   font-size: 10rem;
   letter-spacing: 0.1em;
 }
 
 .create_button {
+  padding: 0.8% 1.5%;
   position: absolute;
   top: 85%;
-  left: 13%;
-  background-color: #ffa755;
-  border-radius: 7px;
-  color: #ffffff;
-  border: none;
-  padding: 12px 30px;
-  font-size: 24px;
-  letter-spacing: 0.04em;
+  left: 13.5%;
 }
 
 .games_button {
+  padding: 0.6% 1.5%;
   position: absolute;
   top: 85%;
   left: 33%;
-  background-color: #ffa755;
-  border-radius: 7px;
-  color: #ffffff;
-  border: none;
-  padding: 12px 35px;
-  font-size: 24px;
-  letter-spacing: 0.04em;
 }
