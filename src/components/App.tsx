@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import jwtDecode from 'jwt-decode';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './Header';
 import Main from './Views/Main';
@@ -13,8 +14,30 @@ import EditGame from './Views/EditGame';
 
 // import DesignatedUser from './Views/DesignatedUser';
 import GameMain from './Views/GameMain';
+import { getEvents, login } from '../services/Server';
+import Wishes from './Views/Wishes';
 
 function App() {
+  const loadGames = async () => {
+    const res = await getEvents();
+    console.log(res);
+  };
+
+  const doLogin = async () => {
+    const res = await login('Curie', 'password');
+    if (!res.ok) return;
+    const { token } = res.response;
+    console.log(token);
+    const data = jwtDecode(token);
+    console.log(data);
+  };
+
+  useEffect(() => {
+    doLogin();
+    // login('riemann', 'password').then(console.log).catch(console.log);
+    // loadGames();
+  }, []);
+
   return (
     <Router>
       <Header>
@@ -24,6 +47,8 @@ function App() {
           <Route path="/admin/createGame" element={<EditGame />} />
           <Route path="/admin/editGame/:id" element={<EditGame />} />
           <Route path="/game/:id" element={<GameMain />} />
+          <Route path="/joinGame/:id" element={<Main />} />
+          <Route path="/myWishes/:id" element={<Wishes />} />
           <Route path="/" element={<Main />} />
         </Routes>
         {/* <Desig/natedUser /> */}

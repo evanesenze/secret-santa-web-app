@@ -7,6 +7,8 @@ interface IEvent {
   sendFriends?: boolean;
   tracking?: boolean;
   reshuffle?: boolean;
+  membersCount: number;
+  memberView: any[];
 }
 
 type IExistEvent = Required<IEvent>;

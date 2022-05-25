@@ -3,7 +3,7 @@ const serverUrl = 'https://localhost:5001/';
 const execute = async (uri: string, config: RequestInit) => {
   return fetch(serverUrl + uri, config)
     .then(async (res) => {
-      // console.log(res);
+      // res.text().then(console.log);
       if (res.status === 200) return { ok: true, response: await res.json() };
       return { ok: false, ...(await res.json()) };
     })
@@ -48,8 +48,15 @@ const editEvent = (newEvent: IExistEvent) => {
 
 const getEvents = (memberId?: string) => (memberId ? getEvent(`events/${memberId}`) : getEvent(`events`));
 
-const login = () => {
-  throw new Error();
+const login = (userName: string, password: string) => {
+  const config: RequestInit = {
+    method: 'POST',
+    body: JSON.stringify({ userName, password }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+  return execute('login/', config);
 };
 
 const getMemberWishes = (memberId: string, eventId: string) => {

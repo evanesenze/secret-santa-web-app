@@ -24,6 +24,8 @@ const EditGame: React.FC = () => {
         endEvent,
         endRegistration,
         sumPrice: showSumPrice ? sumPrice : 0,
+        membersCount: 0,
+        memberView: [],
       };
       saveEvent(event)
         .then(() => alert('Save'))
@@ -38,6 +40,8 @@ const EditGame: React.FC = () => {
         reshuffle: false,
         sendFriends: false,
         tracking: false,
+        membersCount: 0,
+        memberView: [],
       };
       editEvent(existEvent).then(() => alert('edit'));
     }
@@ -69,7 +73,12 @@ const EditGame: React.FC = () => {
           <div className="input_zone">
             <label className="titles_inputs">
               Название игры
-              <input className="input_title_game" type="text" placeholder="Например, Тайный Санта 2022" {...register('description', { required: true })} />
+              <input
+                className="input_title_game"
+                type="text"
+                placeholder="Например, Тайный Санта 2022"
+                {...register('description', { required: true })}
+              />
             </label>
           </div>
           <div className="set_date_zone">
