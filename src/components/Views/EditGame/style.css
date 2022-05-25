@@ -48,8 +48,12 @@
   border: 1px solid #b1ddff;
   box-sizing: border-box;
   border-radius: 6px;
-  color: #cbcbcb;
+  color: black;
   margin: 3% 0;
+}
+
+.input_date:focus {
+  color: #cbcbcb;
 }
 
 .recommended_cost_container {
