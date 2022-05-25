@@ -14,7 +14,7 @@ const Header: FC = ({ children }) => {
           <Logo />
         </div>
         <div className="main_header__sign_up">
-          <span>sing up</span>
+          <span>sign up</span>
         </div>
       </header>
       <div className="main_content">{withoutLayout.includes(nav.pathname) ? children : <ContentLayout>{children}</ContentLayout>}</div>

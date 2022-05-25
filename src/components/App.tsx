@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './Header';
+import Authorization from './Views/Authorization';
 import Main from './Views/Main';
 import Home from './Views/Home';
 // import Games from './Views/Games';
@@ -18,14 +19,15 @@ function App() {
   return (
     <Router>
       <Header>
-        <Routes>
+        {/* <Routes>
           <Route path="/admin" element={<Home />} />
           <Route path="/admin/games" element={<ReadyGames />} />
           <Route path="/admin/createGame" element={<EditGame />} />
           <Route path="/admin/editGame/:id" element={<EditGame />} />
           <Route path="/game/:id" element={<GameMain />} />
           <Route path="/" element={<Main />} />
-        </Routes>
+        </Routes> */}
+        <Authorization />
         {/* <Desig/natedUser /> */}
         {/* <GameMain /> */}
         {/* <Wishes /> */}
