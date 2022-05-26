@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { saveEvent, getEvent, editEvent } from '../../../services/Server';
+// import { saveEvent, getEvent, editEvent } from '../../../services/ServerController';
 import './style.css';
 
-interface ICreate {
+interface ICreateForm {
   description: string;
   endRegistration: string;
   endEvent: string;
@@ -12,12 +12,13 @@ interface ICreate {
   showSumPrice: boolean;
 }
 
-const EditGame: React.FC = () => {
-  const { register, handleSubmit, watch, reset } = useForm<ICreate>();
+const EditGame: React.FC<IDefaultAdminProps> = ({ serverController }) => {
+  const { register, handleSubmit, watch, reset } = useForm<ICreateForm>();
   const { id } = useParams();
   const showSumPrice = watch('showSumPrice');
+  const nav = useNavigate();
 
-  const submit: SubmitHandler<ICreate> = ({ description, endEvent, endRegistration, showSumPrice, sumPrice }) => {
+  const submit: SubmitHandler<ICreateForm> = ({ description, endEvent, endRegistration, showSumPrice, sumPrice }) => {
     if (!id) {
       const event: IEvent = {
         description,
@@ -27,9 +28,15 @@ const EditGame: React.FC = () => {
         membersCount: 0,
         memberView: [],
       };
-      saveEvent(event)
-        .then(() => alert('Save'))
-        .then(() => reset());
+      serverController
+        .saveEvent(event)
+        .then((res) => {
+          if (!res.ok) throw new Error(res.error);
+          alert('Save');
+          return res.response.id;
+        })
+        .then((id) => nav(`../game/${id}`))
+        .catch((error) => console.log(error));
     } else {
       const existEvent: IExistEvent = {
         id,
@@ -43,19 +50,23 @@ const EditGame: React.FC = () => {
         membersCount: 0,
         memberView: [],
       };
-      editEvent(existEvent).then(() => alert('edit'));
+      serverController
+        .editEvent(existEvent)
+        .then(() => alert('edit'))
+        .then(() => nav('../admin/games'));
     }
   };
 
   const loadGameData = async () => {
     if (!id) return;
-    const data = await getEvent(id);
+    const data = await serverController.getEvent(id);
     if (!data.ok) return;
     const gameData = data.response as IExistEvent;
+    console.log(new Date(gameData?.endRegistration).toLocaleDateString('ru', {}));
     reset({
       description: gameData?.description,
-      endEvent: gameData?.endEvent,
-      endRegistration: gameData?.endRegistration,
+      endEvent: gameData?.endEvent?.split('T')[0],
+      endRegistration: gameData?.endRegistration?.split('T')[0],
       showSumPrice: !!gameData?.sumPrice,
       sumPrice: gameData?.sumPrice,
     });

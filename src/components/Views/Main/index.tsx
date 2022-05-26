@@ -1,10 +1,10 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getEvent } from '../../../services/Server';
+// import { getEvent } from '../../../services/ServerController';
 
 import './style.css';
 
-const Main: FC = () => {
+const Main: React.FC<IDefaultProps> = ({ serverController, user }) => {
   const { id } = useParams();
   const [gameData, setGameData] = useState<IExistEvent>();
   const [eventExist, setEventExist] = useState(true);
@@ -12,7 +12,7 @@ const Main: FC = () => {
 
   const loadGameData = async () => {
     if (!id) return setEventExist(false);
-    const event = await getEvent(id).catch(console.log);
+    const event = await serverController.getEvent(id).catch(console.log);
     if (!event.ok) return setEventExist(false);
     console.log(event);
     setGameData(event.response as IExistEvent);
@@ -21,7 +21,6 @@ const Main: FC = () => {
   useEffect(() => {
     loadGameData();
   }, []);
-  console.log(id);
 
   const acceptGame = () => {
     nav(`../myWishes/${id}`);

@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import jwtDecode from 'jwt-decode';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 import Header from './Header';
-import Authorization from './Views/Authorization';
 import Main from './Views/Main';
 import Home from './Views/Home';
 // import Games from './Views/Games';
@@ -15,44 +15,75 @@ import EditGame from './Views/EditGame';
 
 // import DesignatedUser from './Views/DesignatedUser';
 import GameMain from './Views/GameMain';
-import { getEvents, login } from '../services/Server';
 import Wishes from './Views/Wishes';
+import { ServerController } from '../services/ServerController';
 
 function App() {
+  const [{ token }, setCookie] = useCookies(['token']);
+  const [waitAuth, setWaitAuth] = useState(!!token);
+  const [user, setUser] = useState<IUser>();
+  const [serverController] = useState<IServerController>(new ServerController());
+
   const loadGames = async () => {
-    const res = await getEvents();
+    if (!user) throw new Error('No user');
+    const res = await serverController.getEvents();
     console.log(res);
   };
 
-  const doLogin = async () => {
-    const res = await login('Curie', 'password');
+  // useEffect(() => {
+  //   loadGames();
+  // }, [user]);
+
+  const saveUser = (jwtToken: string) => {
+    setWaitAuth(false);
+    const data = jwtDecode<IUser>(jwtToken);
+    data.token = jwtToken;
+    data.role = 'user';
+    serverController.setUserParams(data);
+    if (!data) throw new Error('Wrong token');
+    setUser(data);
+  };
+
+  const handleAuth = async (username: string, password: string) => {
+    const res = await serverController.login(username, password).catch(console.log); // 'Curie', 'password'
     if (!res.ok) return;
     const { token } = res.response;
-    console.log(token);
-    const data = jwtDecode(token);
-    console.log(data);
+    const date = new Date();
+    date.setDate(date.getDate() + 1);
+    setCookie('token', token, { expires: date });
+    saveUser(token);
   };
 
   useEffect(() => {
-    doLogin();
+    if (token) saveUser(token);
+    // const a = new ServerController('', 'user');
     // login('riemann', 'password').then(console.log).catch(console.log);
     // loadGames();
   }, []);
 
   return (
     <Router>
-      <Header>
-        {/* <Routes>
-          <Route path="/admin" element={<Home />} />
-          <Route path="/admin/games" element={<ReadyGames />} />
-          <Route path="/admin/createGame" element={<EditGame />} />
-          <Route path="/admin/editGame/:id" element={<EditGame />} />
-          <Route path="/game/:id" element={<GameMain />} />
-          <Route path="/joinGame/:id" element={<Main />} />
-          <Route path="/myWishes/:id" element={<Wishes />} />
-          <Route path="/" element={<Main />} />
-        </Routes> */}
-        <Authorization />
+      <Header user={user} waitAuth={waitAuth} handleAuth={handleAuth}>
+        <Routes>
+          {user?.role === 'admin' && (
+            <>
+              <Route path="/admin" element={<Home />} />
+              <Route path="/admin/games" element={<ReadyGames serverController={serverController} user={user} />} />
+              <Route path="/admin/createGame" element={<EditGame serverController={serverController} user={user} />} />
+              <Route path="/admin/editGame/:id" element={<EditGame serverController={serverController} user={user} />} />
+            </>
+          )}
+          {!!user && (
+            <>
+              <Route path="/game/:id" element={<GameMain serverController={serverController} user={user} />} />
+              <Route path="/joinGame/:id" element={<Main serverController={serverController} user={user} />} />
+              <Route path="/myWishes/:id" element={<Wishes serverController={serverController} user={user} />} />
+              <Route path="/" element={<Main serverController={serverController} user={user} />} />
+            </>
+          )}
+          {/* <Route element={<div>Not Found</div>} /> */}
+        </Routes>
+        {/* <Authorization /> */}
         {/* <Desig/natedUser /> */}
         {/* <GameMain /> */}
         {/* <Wishes /> */}

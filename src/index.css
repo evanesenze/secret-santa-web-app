@@ -47,6 +47,9 @@ body {
 }
 
 .main_header__sign_up span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
   color: #4295de;
   font-size: 26px;
   z-index: 1;

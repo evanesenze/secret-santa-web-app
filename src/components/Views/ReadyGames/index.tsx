@@ -1,17 +1,22 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { getEvents } from '../../../services/Server';
+// import { getEvents } from '../../../services/ServerController';
 import cardImage from '../../../assets/snowman.png';
 
 import './style.css';
 
-const ReadyGames: FC = () => {
+const ReadyGames: React.FC<IDefaultAdminProps> = ({ serverController }) => {
   const [events, setEvents] = useState([]);
   const nav = useNavigate();
 
   const loadEvents = async () => {
-    const events = await getEvents();
+    const events = await serverController.getEvents();
     setEvents(events.response);
+  };
+
+  const clickHandler = (e: React.MouseEvent, item: any) => {
+    if (e.ctrlKey) nav(`../game/${item.id}`);
+    else nav(`../admin/editGame/${item.id}`);
   };
 
   useEffect(() => {
@@ -28,7 +33,7 @@ const ReadyGames: FC = () => {
       </div>
       <div className="container">
         {events.map((item: any) => (
-          <div key={item.id} className="default_game_card" onClick={() => nav(`../admin/editGame/${item.id}`)}>
+          <div key={item.id} className="default_game_card" onClick={(e) => clickHandler(e, item)}>
             <img className="default_game_card__img" src={cardImage} />
             <span className="default_game_card__title">{item.description}</span>
           </div>

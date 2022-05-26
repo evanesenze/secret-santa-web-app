@@ -41,7 +41,7 @@
 
 .default_game_card__img {
   height: 80%;
-  background-color: #ffa755;
+  /* background-color: #ffa755; */
   border-radius: 15px;
   color: #ffffff;
   border: none;
