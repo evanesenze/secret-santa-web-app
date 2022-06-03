@@ -14,7 +14,6 @@ const Header: FC<IHeaderProps> = ({ children, user, waitAuth, handleAuth }) => {
   const nav = useLocation();
   const withoutLayout = ['/', '/admin', '/login'];
   // const d = nav.pathname.split('/')[1];
-
   const getContent = () => {
     const d = nav.pathname.split('/')[1];
     if (!user) return waitAuth ? <div>Загрузка...</div> : <Authorization handleAuth={handleAuth} />;

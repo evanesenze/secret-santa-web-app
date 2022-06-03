@@ -49,6 +49,7 @@ const EditGame: React.FC<IDefaultAdminProps> = ({ serverController }) => {
         tracking: false,
         membersCount: 0,
         memberView: [],
+        preference: '',
       };
       serverController
         .editEvent(existEvent)

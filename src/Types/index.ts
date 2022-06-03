@@ -9,9 +9,29 @@ interface IEvent {
   reshuffle?: boolean;
   membersCount: number;
   memberView: any[];
+  preference?: string;
 }
 
 type IExistEvent = Required<IEvent>;
+
+interface IPreferences {
+  apartment?: string;
+  city?: string;
+  name?: string;
+  phoneNumber?: string;
+  preference?: string;
+  region?: string;
+  street?: string;
+  zip?: string;
+}
+
+type IExistPreferences = Required<IPreferences>;
+
+interface IRecipientInfo {
+  address: string;
+  name: string;
+  preferences: string;
+}
 
 interface IWishes {
   name: string;
@@ -26,7 +46,7 @@ interface IWishes {
 
 interface IUser {
   email: string;
-  exp: number;
+  // exp: number;
   role: UserRole;
   token: string;
   UserID: string;
@@ -52,6 +72,9 @@ interface IServerController {
   getUserInfo(userId: string): Promise<any>;
   getUserEvent(eventId: string): Promise<any>;
   getUserPreferences(eventId: string): Promise<any>;
+  updateUserPreferences(eventId: string, preferences: IExistPreferences): Promise<any>;
+  saveUserPreferences(eventId: string, preferences: IExistPreferences): Promise<any>;
+  getRecipientInfo(eventId: string): Promise<any>;
 }
 
 interface IDefaultProps {

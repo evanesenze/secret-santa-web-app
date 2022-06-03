@@ -8,14 +8,23 @@ const Main: React.FC<IDefaultProps> = ({ serverController, user }) => {
   const { id } = useParams();
   const [gameData, setGameData] = useState<IExistEvent>();
   const [eventExist, setEventExist] = useState(true);
+  const [isMemberGame, setIsMemberGame] = useState(true);
   const nav = useNavigate();
 
   const loadGameData = async () => {
     if (!id) return setEventExist(false);
-    const event = await serverController.getEvent(id).catch(console.log);
-    if (!event.ok) return setEventExist(false);
-    console.log(event);
-    setGameData(event.response as IExistEvent);
+    if (user.role === 'admin') {
+      const event = await serverController.getEvent(id).catch(console.log);
+      if (!event.ok) return setEventExist(false);
+      console.log(event);
+      setGameData(event.response as IExistEvent);
+    } else if (user.role === 'user') {
+      const event = await serverController.getUserEvent(id).catch(console.log);
+      // if (!event.ok) return nav(`../myWishes/${id}`);
+      console.log(event);
+      if (!event.ok) return setIsMemberGame(false);
+      setGameData(event.response as IExistEvent);
+    }
   };
 
   useEffect(() => {
@@ -23,7 +32,7 @@ const Main: React.FC<IDefaultProps> = ({ serverController, user }) => {
   }, []);
 
   const acceptGame = () => {
-    nav(`../myWishes/${id}`);
+    isMemberGame ? nav(`../game/${id}`) : nav(`../myWishes/${id}`);
   };
 
   return (
@@ -31,14 +40,25 @@ const Main: React.FC<IDefaultProps> = ({ serverController, user }) => {
       <span className="main_view__title">Тайный санта</span>
       <div className="main_view__info">
         {!eventExist && !!id && <div>Игра с ID {id} не найдена </div>}
-        {!gameData && eventExist && <div>Загрузка...</div>}
-        {gameData && (
+        {isMemberGame && !gameData && eventExist && <div>Загрузка...</div>}
+        {!isMemberGame && (
           <>
             <span className="main_view__info_text">
-              Вас пригласили участвовать <br />в игре “{gameData.description}”
+              Вас пригласили участвовать <br />в игре
             </span>
             <button style={{ marginTop: '3%' }} className="default__btn" onClick={acceptGame}>
               принять приглашение
+            </button>
+          </>
+        )}
+        {isMemberGame && !!gameData && (
+          <>
+            <span className="main_view__info_text">
+              Вы уже участник <br />
+              игры “{gameData.description}”
+            </span>
+            <button style={{ marginTop: '3%' }} className="default__btn" onClick={acceptGame}>
+              Перейти к игре
             </button>
           </>
         )}

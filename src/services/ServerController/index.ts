@@ -17,14 +17,16 @@ class ServerController implements IServerController {
 
   private async execute(uri: string, config: RequestInit) {
     config.headers = { ...config.headers, Authorization: `Bearer ${this.token}` };
+    // console.log(this.token);
     const res = await fetch(this.serverUrl + uri, config).catch(console.log);
     if (!res) return { ok: false };
+    console.log(res);
     const obj = await res
       .json()
-      .then((response) => ({ response }))
-      .catch((error) => ({ error }));
+      .then((response) => ({ ok: res.ok, response }))
+      .catch((error) => ({ ok: res.ok, error }));
     // console.log(obj);
-    return { ok: res.ok, ...obj };
+    return obj;
     // return fetch(this.serverUrl + uri, config)
     //   .then(async (res) => {
     //     // res.text().then(console.log);
@@ -51,11 +53,44 @@ class ServerController implements IServerController {
     return this.execute(`user/${this.userId}/event/${eventId}`, config);
   }
 
+  public getRecipientInfo(eventId: string) {
+    if (!this.userId) throw new Error('No user id');
+    const config: RequestInit = {
+      method: 'GET',
+      // headers: { Authorization: `Bearer ${this.token}` },
+    };
+    return this.execute(`user/${this.userId}/event/${eventId}/recipientInfo`, config);
+  }
+
   public getUserPreferences(eventId: string) {
     if (!this.userId) throw new Error('No user id');
     const config: RequestInit = {
       method: 'GET',
       // headers: { Authorization: `Bearer ${this.token}` },
+    };
+    return this.execute(`user/${this.userId}/preferences/${eventId}`, config);
+  }
+
+  public updateUserPreferences(eventId: string, preferences: IExistPreferences) {
+    if (!this.userId) throw new Error('No user id');
+    const config: RequestInit = {
+      method: 'PUT',
+      body: JSON.stringify(preferences),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    return this.execute(`user/${this.userId}/preferences/${eventId}`, config);
+  }
+
+  public saveUserPreferences(eventId: string, preferences: IExistPreferences) {
+    if (!this.userId) throw new Error('No user id');
+    const config: RequestInit = {
+      method: 'POST',
+      body: JSON.stringify(preferences),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     };
     return this.execute(`user/${this.userId}/preferences/${eventId}`, config);
   }

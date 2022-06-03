@@ -17,6 +17,9 @@ import EditGame from './Views/EditGame';
 import GameMain from './Views/GameMain';
 import Wishes from './Views/Wishes';
 import { ServerController } from '../services/ServerController';
+import FindMember from './Views/FindMember';
+import GameWasCreated from './Views/GameWasCreated';
+import DesignatedUser from './Views/DesignatedUser';
 
 function App() {
   const [{ token }, setCookie] = useCookies(['token']);
@@ -34,16 +37,23 @@ function App() {
   //   loadGames();
   // }, [user]);
 
-  const saveUser = async (jwtToken: string) => {
+  const saveUser = async (token: string) => {
+    const { exp, UserID, email, role } = jwtDecode<any>(token);
+    const date = new Date(exp * 1000);
+    setCookie('token', token, { expires: date, path: '/' });
+    let user: IUser = {
+      UserID,
+      email,
+      role,
+      token,
+    };
+    console.log(user);
+    serverController.setUserParams(user);
+    const userInfo = await serverController.getUserInfo(user.UserID);
+    if (!userInfo) throw new Error('Wrong token');
+    if (userInfo.ok) user = { ...user, ...userInfo.response };
+    setUser(user);
     setWaitAuth(false);
-    let data = jwtDecode<IUser>(jwtToken);
-    data.token = jwtToken;
-    // data.role = 'user';
-    const userInfo = await serverController.getUserInfo(data.UserID);
-    if (userInfo.ok) data = { ...data, ...userInfo.response };
-    serverController.setUserParams(data);
-    if (!data) throw new Error('Wrong token');
-    setUser(data);
   };
 
   const handleAuth = async (username: string, password: string) => {
@@ -51,9 +61,6 @@ function App() {
     console.log(res);
     if (!res.ok) return;
     const { token } = res.response;
-    const date = new Date();
-    date.setDate(date.getDate() + 1);
-    setCookie('token', token, { expires: date });
     saveUser(token);
   };
 
@@ -86,19 +93,18 @@ function App() {
               <Route path="/" element={<Main serverController={serverController} user={user} />} />
             </>
           )}
-          {/* <Route element={<div>Not Found</div>} /> */}
         </Routes>
         {/* <Authorization /> */}
-        {/* <Desig/natedUser /> */}
         {/* <GameMain /> */}
         {/* <Wishes /> */}
         {/* <Main /> */}
         {/* <GameWasCreated /> */}
         {/* <GameWasCreatedWithMembers /> */}
-        {/* <FindMember /> */}
         {/* <Games /> */}
         {/* <ReadyGames /> */}
         {/* <Home /> */}
+        {/* <DesignatedUser /> */}
+        {/* <FindMember /> */}
       </Header>
     </Router>
   );
