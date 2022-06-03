@@ -29,6 +29,10 @@ interface IUser {
   exp: number;
   role: UserRole;
   token: string;
+  UserID: string;
+  name?: string;
+  surname?: string;
+  patronymic?: string;
 }
 
 type UserRole = 'admin' | 'user';
@@ -45,6 +49,9 @@ interface IServerController {
   saveMemberWishes(memberId: string, eventId: string, wishes: IWishes): Promise<any>;
   editMemberWishes(memberId: string, eventId: string, wishes: IWishes): Promise<any>;
   exitEvent(): any;
+  getUserInfo(userId: string): Promise<any>;
+  getUserEvent(eventId: string): Promise<any>;
+  getUserPreferences(eventId: string): Promise<any>;
 }
 
 interface IDefaultProps {

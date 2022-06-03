@@ -3,26 +3,61 @@ class ServerController implements IServerController {
   private userSignIn = false;
   private token?: string;
   private role?: UserRole;
-  constructor() {}
+  private userId?: string;
 
   public setUserParams(user: IUser) {
-    const { token, role } = user;
+    const { token, role, UserID } = user;
     this.token = token;
     this.role = role;
     this.userSignIn = true;
+    this.userId = UserID;
   }
 
   // Authorization: `Bearer ${this.token}`
 
   private async execute(uri: string, config: RequestInit) {
     config.headers = { ...config.headers, Authorization: `Bearer ${this.token}` };
-    return fetch(this.serverUrl + uri, config)
-      .then(async (res) => {
-        // res.text().then(console.log);
-        if (res.status === 200) return { ok: true, response: await res.json() };
-        return { ok: false, ...(await res.json()) };
-      })
-      .catch((error) => ({ ok: false, error: error.response?.data ?? error.message }));
+    const res = await fetch(this.serverUrl + uri, config).catch(console.log);
+    if (!res) return { ok: false };
+    const obj = await res
+      .json()
+      .then((response) => ({ response }))
+      .catch((error) => ({ error }));
+    // console.log(obj);
+    return { ok: res.ok, ...obj };
+    // return fetch(this.serverUrl + uri, config)
+    //   .then(async (res) => {
+    //     // res.text().then(console.log);
+    //     if (res.status === 200) return { ok: true, response: await res.json() };
+    //     return { ok: false, ...(await res.json()) };
+    //   })
+    //   .catch((error) => ({ ok: false, error: error.response?.data ?? error.message }));
+  }
+
+  public getUserInfo(userId: string) {
+    const config: RequestInit = {
+      method: 'GET',
+      // headers: { Authorization: `Bearer ${this.token}` },
+    };
+    return this.execute(`user/${userId}/`, config);
+  }
+
+  public getUserEvent(eventId: string) {
+    if (!this.userId) throw new Error('No user id');
+    const config: RequestInit = {
+      method: 'GET',
+      // headers: { Authorization: `Bearer ${this.token}` },
+    };
+    return this.execute(`user/${this.userId}/event/${eventId}`, config);
+  }
+
+  public getUserPreferences(eventId: string) {
+    if (!this.userId) throw new Error('No user id');
+    const config: RequestInit = {
+      method: 'GET',
+      // headers: { Authorization: `Bearer ${this.token}` },
+    };
+    return this.execute(`user/${this.userId}/preferences/${eventId}`, config);
   }
 
   public getEvent(eventId: string) {

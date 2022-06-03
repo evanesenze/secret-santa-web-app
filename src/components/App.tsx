@@ -34,11 +34,13 @@ function App() {
   //   loadGames();
   // }, [user]);
 
-  const saveUser = (jwtToken: string) => {
+  const saveUser = async (jwtToken: string) => {
     setWaitAuth(false);
-    const data = jwtDecode<IUser>(jwtToken);
+    let data = jwtDecode<IUser>(jwtToken);
     data.token = jwtToken;
-    data.role = 'user';
+    // data.role = 'user';
+    const userInfo = await serverController.getUserInfo(data.UserID);
+    if (userInfo.ok) data = { ...data, ...userInfo.response };
     serverController.setUserParams(data);
     if (!data) throw new Error('Wrong token');
     setUser(data);
@@ -46,6 +48,7 @@ function App() {
 
   const handleAuth = async (username: string, password: string) => {
     const res = await serverController.login(username, password).catch(console.log); // 'Curie', 'password'
+    console.log(res);
     if (!res.ok) return;
     const { token } = res.response;
     const date = new Date();
@@ -60,6 +63,8 @@ function App() {
     // login('riemann', 'password').then(console.log).catch(console.log);
     // loadGames();
   }, []);
+
+  useEffect(() => {}, [user]);
 
   return (
     <Router>

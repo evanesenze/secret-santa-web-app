@@ -12,10 +12,17 @@ const GameMain: React.FC<IDefaultProps> = ({ serverController, user }) => {
 
   const loadGameData = async () => {
     if (!id) return setEventExist(false);
-    const event = await serverController.getEvent(id).catch(console.log);
-    if (!event.ok) return setEventExist(false);
-    console.log(event);
-    setGameData(event.response as IExistEvent);
+    if (user.role === 'admin') {
+      const event = await serverController.getEvent(id).catch(console.log);
+      if (!event.ok) return setEventExist(false);
+      console.log(event);
+      setGameData(event.response as IExistEvent);
+    } else if (user.role === 'user') {
+      const event = await serverController.getUserPreferences(id).catch(console.log);
+      console.log(event);
+      // if (!event.ok) return setEventExist(false);
+      // setGameData(event.response as IExistEvent);
+    }
   };
 
   useEffect(() => {

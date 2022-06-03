@@ -28,7 +28,7 @@ const Header: FC<IHeaderProps> = ({ children, user, waitAuth, handleAuth }) => {
         <div className="main_header__logo">
           <Logo />
         </div>
-        <div className="main_header__sign_up">{<span>{user?.role ?? 'Вход'}</span>}</div>
+        <div className="main_header__sign_up">{<span>{user?.name ?? user?.role ?? 'Вход'}</span>}</div>
       </header>
       <div className="main_content">{getContent()}</div>
     </React.Fragment>
