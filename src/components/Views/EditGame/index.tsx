@@ -126,7 +126,7 @@ const EditGame: React.FC<IDefaultAdminProps> = ({ serverController }) => {
           )}
         </section>
         <div className="button">
-          <button className="create_button" type="submit">
+          <button className="create_button_create" type="submit">
             {id ? 'изменить' : 'создать'}
           </button>
         </div>
