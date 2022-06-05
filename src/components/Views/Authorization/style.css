@@ -1,3 +1,12 @@
+.authorization_wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
 .authorization_box {
   width: 25%;
   height: 50%;
@@ -56,7 +65,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 2.5% 0;
+  /* padding: 2.5% 0; */
   font-weight: 700;
   font-feature-settings: 'calt' off;
   color: #4295de;
@@ -71,12 +80,6 @@
   border-radius: 6px;
 }
 
-.log_in {
+.auth__log_in {
   width: 100%;
-  padding: 5%;
-  border: none;
-  border-radius: 7px;
-  background: #ffa755;
-  color: white;
-  letter-spacing: 0.04em;
 }

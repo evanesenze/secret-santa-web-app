@@ -11,6 +11,7 @@ const ReadyGames: React.FC<IDefaultAdminProps> = ({ serverController }) => {
 
   const loadEvents = async () => {
     const events = await serverController.getEvents();
+    console.log(events.response);
     setEvents(events.response);
   };
 
@@ -27,7 +28,7 @@ const ReadyGames: React.FC<IDefaultAdminProps> = ({ serverController }) => {
     <>
       <div className="rectangle">
         <h1 className="games">Игры</h1>
-        <Link to="/admin/createGame" className="create_button">
+        <Link to="/admin/createGame" className="default__btn ready_games__create_button">
           создать
         </Link>
       </div>

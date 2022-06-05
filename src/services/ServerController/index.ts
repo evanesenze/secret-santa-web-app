@@ -20,7 +20,7 @@ class ServerController implements IServerController {
     // console.log(this.token);
     const res = await fetch(this.serverUrl + uri, config).catch(console.log);
     if (!res) return { ok: false };
-    console.log(res);
+    // console.log(res);
     const obj = await res
       .json()
       .then((response) => ({ ok: res.ok, response }))
@@ -51,6 +51,18 @@ class ServerController implements IServerController {
       // headers: { Authorization: `Bearer ${this.token}` },
     };
     return this.execute(`user/${this.userId}/event/${eventId}`, config);
+  }
+
+  public exitGame(eventId: string) {
+    if (!this.userId) throw new Error('No user id');
+    const config: RequestInit = {
+      method: 'PUT',
+      // body: JSON.stringify(preferences),
+      // headers: {
+      //   'Content-Type': 'application/json',
+      // },
+    };
+    return this.execute(`user/${this.userId}/exit/${eventId}`, config);
   }
 
   public getRecipientInfo(eventId: string) {
@@ -177,10 +189,6 @@ class ServerController implements IServerController {
       },
     };
     return this.execute(`member/${memberId}/wishes/${eventId}`, config);
-  }
-
-  public exitEvent() {
-    throw new Error();
   }
 }
 

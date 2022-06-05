@@ -5,8 +5,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 import './style.css';
 import FindMember from '../FindMember';
 import DesignatedUser from '../DesignatedUser';
+import Loader from '../../Loader';
 
-const GameMain: React.FC<IDefaultProps> = ({ serverController, user }) => {
+const GameMain: React.FC<IDefaultProps> = ({ serverController, user, setUser }) => {
   const { id } = useParams();
   const [gameData, setGameData] = useState<IExistEvent>();
   const [isReshuffle, setIsReshuffle] = useState(false);
@@ -26,8 +27,11 @@ const GameMain: React.FC<IDefaultProps> = ({ serverController, user }) => {
       const event = await serverController.getUserEvent(id).catch(console.log);
       if (!event.ok) return nav(`../myWishes/${id}`);
       console.log(event);
+      const existEvent = event.response as IExistEvent;
+      existEvent.id = id;
+      setUser?.((x) => (x ? { ...x, activeEvent: existEvent } : undefined));
       // if (!event.ok) return setEventExist(false);
-      setGameData(event.response as IExistEvent);
+      setGameData(existEvent);
     }
   };
 
@@ -96,7 +100,7 @@ const GameMain: React.FC<IDefaultProps> = ({ serverController, user }) => {
   return (
     <>
       {!eventExist && <div>Bad</div>}
-      {!gameData && eventExist && <div>Загрузка...</div>}
+      {!gameData && eventExist && <Loader />}
       {!isReshuffle && !!gameData && GameView}
       {isReshuffle && !!gameData && isAdmin && <FindMember serverController={serverController} user={user} gameData={gameData} />}
       {isReshuffle && !!gameData && !isAdmin && <DesignatedUser serverController={serverController} user={user} />}

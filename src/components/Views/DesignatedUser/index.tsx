@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 // import ContentLayout from '../../ContentLayout';
 import playerIcon from '../../../assets/playerIcon.png';
+import Loader from '../../Loader';
 import './style.css';
 
 interface IDesignatedUserProps extends IDefaultProps {
@@ -26,7 +27,7 @@ const DesignatedUser: React.FC<IDesignatedUserProps> = ({ serverController, user
 
   return (
     <>
-      {!recipientInfo && <div>Загрузка...</div>}
+      {!recipientInfo && <Loader />}
       {!!recipientInfo && (
         <div className="designated_user_content">
           <div className="default_player_card">

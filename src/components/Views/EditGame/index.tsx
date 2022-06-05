@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
 // import { saveEvent, getEvent, editEvent } from '../../../services/ServerController';
 import './style.css';
+import Loader from '../../Loader';
 
 interface ICreateForm {
   description: string;
@@ -13,7 +14,9 @@ interface ICreateForm {
 }
 
 const EditGame: React.FC<IDefaultAdminProps> = ({ serverController }) => {
-  const { register, handleSubmit, watch, reset } = useForm<ICreateForm>();
+  const [gameData, setGameData] = useState<IExistEvent>();
+  const [eventExist, setEventExist] = useState(true);
+  const { register, handleSubmit, watch } = useForm<ICreateForm>();
   const { id } = useParams();
   const showSumPrice = watch('showSumPrice');
   const nav = useNavigate();
@@ -59,25 +62,33 @@ const EditGame: React.FC<IDefaultAdminProps> = ({ serverController }) => {
   };
 
   const loadGameData = async () => {
-    if (!id) return;
+    if (!id) return setEventExist(false);
     const data = await serverController.getEvent(id);
-    if (!data.ok) return;
+    if (!data.ok) return setEventExist(false);
     const gameData = data.response as IExistEvent;
-    console.log(new Date(gameData?.endRegistration).toLocaleDateString('ru', {}));
-    reset({
-      description: gameData?.description,
-      endEvent: gameData?.endEvent?.split('T')[0],
-      endRegistration: gameData?.endRegistration?.split('T')[0],
-      showSumPrice: !!gameData?.sumPrice,
-      sumPrice: gameData?.sumPrice,
-    });
+    setGameData(gameData);
+    // console.log(new Date(gameData?.endRegistration).toLocaleDateString('ru', {}));
+    // reset({
+    //   description: gameData?.description,
+    //   endEvent: gameData?.endEvent?.split('T')[0],
+    //   endRegistration: gameData?.endRegistration?.split('T')[0],
+    //   showSumPrice: !!gameData?.sumPrice,
+    //   sumPrice: gameData?.sumPrice,
+    // });
   };
 
   useEffect(() => {
     loadGameData();
   }, []);
 
-  return (
+  const deleteEvent = async (id: string) => {
+    if (!confirm('Вы точно хотите удалить игру?')) return;
+    const res = await serverController.deleteEvent(id).catch(console.log);
+    console.log(res);
+    nav('../admin/games');
+  };
+
+  const EditGameContent = (
     <>
       <h1 className="title">{id ? 'Изменение' : 'Создание'} игры</h1>
       <form onSubmit={handleSubmit(submit)}>
@@ -89,6 +100,7 @@ const EditGame: React.FC<IDefaultAdminProps> = ({ serverController }) => {
                 className="input_title_game"
                 type="text"
                 placeholder="Например, Тайный Санта 2022"
+                defaultValue={gameData?.description}
                 {...register('description', { required: true })}
               />
             </label>
@@ -96,13 +108,25 @@ const EditGame: React.FC<IDefaultAdminProps> = ({ serverController }) => {
           <div className="set_date_zone">
             <label className="titles_inputs">
               Дата жеребьевки
-              <input className="input_date" type="date" placeholder="дд/мм/гггг" {...register('endEvent', { required: true })} />
+              <input
+                className="input_date"
+                type="date"
+                defaultValue={gameData?.endEvent?.split('T')[0]}
+                placeholder="дд/мм/гггг"
+                {...register('endEvent', { required: true })}
+              />
             </label>
           </div>
           <div className="send_date_zone">
             <label className="titles_inputs">
               Отправить подарок до
-              <input className="input_date" type="date" placeholder="дд/мм/гггг" {...register('endRegistration', { required: true })} />
+              <input
+                className="input_date"
+                type="date"
+                defaultValue={gameData?.endRegistration?.split('T')[0]}
+                placeholder="дд/мм/гггг"
+                {...register('endRegistration', { required: true })}
+              />
             </label>
           </div>
         </section>
@@ -115,22 +139,40 @@ const EditGame: React.FC<IDefaultAdminProps> = ({ serverController }) => {
             <input type="checkbox" {...register('showSumPrice')} />
             <span className="slider_round"></span>
           </label>
-          {showSumPrice && (
+          {(!!gameData?.sumPrice || showSumPrice) && (
             <div className="gift_cost">
               <p className="title_gift_cost">Сумма подарка</p>
-              <input className="input_gift_cost" type="number" {...register('sumPrice', { required: true })} />
+              <input className="input_gift_cost" type="number" defaultValue={gameData?.sumPrice} {...register('sumPrice', { required: true })} />
               <select className="select_currency" name="currency" id="currency">
                 <option className="currency">Руб</option>
               </select>
             </div>
           )}
         </section>
-        <div className="button">
-          <button className="create_button_create" type="submit">
-            {id ? 'изменить' : 'создать'}
+        <div className="edit_game__buttons">
+          <button className="default__btn" type="submit">
+            {id ? 'Сохранить изменения' : 'Создать игру'}
           </button>
+          {!!id && (
+            <>
+              <button className="default__btn" onClick={() => nav(`../game/${id}`)}>
+                Перейти к игре
+              </button>
+              <button className="default__btn" type="button" onClick={() => deleteEvent(id)}>
+                Удалить
+              </button>
+            </>
+          )}
         </div>
       </form>
+    </>
+  );
+
+  return (
+    <>
+      {/* {!eventExist && <div>Bad</div>} */}
+      {!gameData && eventExist && <Loader />}
+      {(!!gameData || !eventExist) && EditGameContent}
     </>
   );
 };

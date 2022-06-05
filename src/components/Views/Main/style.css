@@ -18,6 +18,7 @@
   text-transform: uppercase;
   font-weight: 600;
   color: #ee7e21;
+  user-select: none;
   /* filter: brightness(); */
   top: 40%;
   /* background-image: -webkit-gradient( linear, left center, right center, color-stop(0, #F7C655), color-stop(1, #EE7E21));

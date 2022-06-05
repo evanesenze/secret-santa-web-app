@@ -6,10 +6,10 @@ const Home: FC = () => {
   return (
     <div className="home_view">
       <span>Тайный санта</span>
-      <Link className="create_button_home" to="/admin/createGame">
+      <Link className="default__btn home_view__btn_create" to="/admin/createGame">
         создать
       </Link>
-      <Link className="games_button" to="/admin/games">
+      <Link className="default__btn home_view__btn_games" to="/admin/games">
         игры
       </Link>
     </div>

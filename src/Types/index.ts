@@ -1,3 +1,5 @@
+type ISetState<T> = React.Dispatch<React.SetStateAction<T>>;
+
 interface IEvent {
   id?: string;
   description: string;
@@ -53,6 +55,7 @@ interface IUser {
   name?: string;
   surname?: string;
   patronymic?: string;
+  activeEvent?: IExistEvent;
 }
 
 type UserRole = 'admin' | 'user';
@@ -68,18 +71,19 @@ interface IServerController {
   getMemberWishes(memberId: string, eventId: string): Promise<any>;
   saveMemberWishes(memberId: string, eventId: string, wishes: IWishes): Promise<any>;
   editMemberWishes(memberId: string, eventId: string, wishes: IWishes): Promise<any>;
-  exitEvent(): any;
   getUserInfo(userId: string): Promise<any>;
   getUserEvent(eventId: string): Promise<any>;
   getUserPreferences(eventId: string): Promise<any>;
   updateUserPreferences(eventId: string, preferences: IExistPreferences): Promise<any>;
   saveUserPreferences(eventId: string, preferences: IExistPreferences): Promise<any>;
   getRecipientInfo(eventId: string): Promise<any>;
+  exitGame(eventId: string): Promise<any>;
 }
 
 interface IDefaultProps {
   serverController: IServerController;
   user: IUser;
+  setUser?: ISetState<IUser | undefined>;
 }
 
 interface IDefaultAdminProps extends IDefaultProps {}

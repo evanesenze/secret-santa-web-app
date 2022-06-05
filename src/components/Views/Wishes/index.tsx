@@ -3,8 +3,17 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
 // import { getEvent } from '../../../services/ServerController';
 import './style.css';
+import Loader from '../../Loader';
 
 interface IWishesForm extends IExistPreferences {}
+
+interface IGetUserPreferencesResponse {
+  // state: UserPreferencesState;
+  message: string;
+  wishes: IPreferences;
+}
+
+type UserPreferencesState = 'some';
 
 const Wishes: React.FC<IDefaultProps> = ({ serverController, user }) => {
   const { id } = useParams();
@@ -49,7 +58,9 @@ const Wishes: React.FC<IDefaultProps> = ({ serverController, user }) => {
         setPreferences({});
         return setPreferencesExist(false);
       }
-      setPreferences(preferences.response as IPreferences);
+      const { message, wishes } = preferences.response as IGetUserPreferencesResponse;
+      if (message === 'Member joins for the first time') setPreferencesExist(false);
+      setPreferences(wishes);
       // if (!event.ok) return nav(`../myWishes/${id}`);
       console.log(preferences);
       // if (!event.ok) return setEventExist(false);
@@ -69,7 +80,7 @@ const Wishes: React.FC<IDefaultProps> = ({ serverController, user }) => {
   return (
     <div className="wishes_content">
       {!eventExist && <div>Игра с ID {id} не найдена </div>}
-      {!preferences && eventExist && <div>Загрузка...</div>}
+      {!preferences && eventExist && <Loader />}
       {preferences && (
         <>
           <h2 className="wishes_content__title">Мое пожелание</h2>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import Loader from '../../Loader';
 // import { getEvent } from '../../../services/ServerController';
 
 import './style.css';
@@ -39,8 +40,9 @@ const Main: React.FC<IDefaultProps> = ({ serverController, user }) => {
     <div className="main_view">
       <span className="main_view__title">Тайный санта</span>
       <div className="main_view__info">
+        {!id && <div>Чтобы войти в игру, перейдите по пригласительной ссылке</div>}
         {!eventExist && !!id && <div>Игра с ID {id} не найдена </div>}
-        {isMemberGame && !gameData && eventExist && <div>Загрузка...</div>}
+        {isMemberGame && !gameData && eventExist && <Loader />}
         {!isMemberGame && (
           <>
             <span className="main_view__info_text">
