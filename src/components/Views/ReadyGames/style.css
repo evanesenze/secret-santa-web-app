@@ -29,6 +29,7 @@
 }
 
 .default_game_card__title {
+  overflow: hidden;
   height: 20%;
   font-weight: 400;
   font-size: 15px;
@@ -53,4 +54,12 @@
   position: relative;
   left: -1%;
   text-decoration: none;
+}
+
+@media screen and (max-width: 479px) {
+  .rectangle {
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0 5%;
+  }
 }

@@ -86,3 +86,25 @@
     flex-wrap: wrap;
     gap: 2%;
 }
+
+@media screen and (max-width: 991px) {
+    .default_game_card {
+        width: 140px;
+        height: 140px;
+    }
+
+    .default_game_card__title {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .default_game_card {
+        max-width: 70px;
+        max-height: 70px;
+    }
+
+    .default_game_card__title {
+        font-size: 12px;
+    }
+}

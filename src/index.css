@@ -168,11 +168,8 @@ body {
   flex-direction: column;
   border: 1px solid #b1ddff;
   border-radius: 10px;
-  height: 110px;
   width: 100%;
-  /* height: 100%; */
-  /* width: 200px; */
-  /* height: 110px; */
+  height: 120px; 
   color: #1d71b8;
   background-color: white;
 }
@@ -247,14 +244,18 @@ body {
 /* Планшет */
 @media screen and (max-width: 991px) {
   .default_info_card__title {
-    font-size: 24px;
+    overflow: hidden;
+    min-width: 100%;
+    font-size: 40px;
   }
   .default_info_card__description {
-    font-size: 10px;
+    overflow: hidden;
+    min-width: 100%;
+    font-size: 16px;
   }
 
   .default_player_card__name {
-    font-size: 12px;
+    font-size: 16px;
   }
 
   .main_header__logo {
@@ -262,7 +263,9 @@ body {
   }
 
   .default_input {
-    height: 2rem;
+    overflow: hidden;
+    height: 2.5rem;
+    font-size: 20px;
   }
 
   .default_input::placeholder {
@@ -279,13 +282,14 @@ body {
 
   .default__btn {
     font-size: 14px;
-    padding: 0.1rem 0.2rem;
+    padding: 0.8rem 0.2rem;
     height: 20px;
+    width: 100px;
   }
 
   .main_content__layout {
     height: 100%;
-    width: 100%;
+    width: 95%;
     max-height: none;
     margin: 0;
     margin-top: 30px;
@@ -296,12 +300,13 @@ body {
   }
 
   .default_player_card {
-    width: 80px;
-    height: 80px;
+    max-width: 100px;
+    max-height: 100px;
   }
 
   .default_info_card {
-    height: 80px;
+    min-width: 100%;
+    max-height: 100px;
   }
 }
 
@@ -315,6 +320,7 @@ body {
     margin-top: 0rem;
     width: 100%;
     height: 2rem;
+    font-size: 16px;
   }
 
   .main_header__logo {
@@ -335,11 +341,12 @@ body {
     height: 30px;
     padding: 0.2rem 0.5rem;
     letter-spacing: 0.1em;
+    width: 100px;
   }
 
   .main_content__layout {
     height: 100%;
-    width: 100%;
+    width: 95%;
     max-height: none;
     margin: 0;
     margin-top: 72px;
@@ -355,11 +362,20 @@ body {
   }
 
   .default_info_card {
-    height: 65px;
+    min-width: 140px;
+    max-height: 65px;
+  }
+
+  .default_player_card__name {
+    font-size: 12px;
+  }
+  
+  .default_info_card__description {
+    font-size: 10px;
   }
 
   .default_info_card__title {
-    font-size: 34px;
+    font-size: 26px;
   }
 }
 /* 
