@@ -80,11 +80,21 @@
   border-radius: 6px;
 }
 
+.input_text:hover,
+.input_text:focus {
+  border-color: #1d71b8;
+  outline: none;
+}
+
 .auth__log_in {
   width: 100%;
 }
 
 @media screen and (max-width: 991px) {
+  .constituents_of_authorization {
+    gap: 22px;
+  }
+
   .authorization_title {
     margin-top: 3%;
     font-size: 52px;
@@ -131,6 +141,10 @@
 
   .default__btn {
     position: relative;
-    left: 5%;
+    left: 0%;
+  }
+
+  .auth__log_in {
+    width: 100%;
   }
 }

@@ -63,12 +63,12 @@ body {
 .main_header__sign_up::after {
   position: absolute;
   content: '';
-  width: 100%;
+  width: 130%;
   height: 200%;
   top: -80%;
-  right: 0;
+  right: -25%;
   background: linear-gradient(241.84deg, #cadae1 10.53%, #ebecee 82.8%);
-  border-radius: 75px;
+  border-radius: 50%;
   transform: rotate(-12.33deg);
 }
 
@@ -96,8 +96,9 @@ body {
 }
 
 .default__btn {
-  font-size: 20px;
-  padding: 0.5rem 0.6rem;
+  /* font-size: 32px; */
+  letter-spacing: 0.04em;
+  padding: 0.5rem 1rem;
   border: 1px solid #ffa755;
   border-radius: 0.5rem;
   background-color: #ffa755;
@@ -106,7 +107,6 @@ body {
 
 .default__btn:hover {
   background-color: #ff9533;
-  border: 1px solid #723e0d;
 }
 
 .default__error {
@@ -115,7 +115,7 @@ body {
 }
 
 .default_input__label {
-  font-size: 16px;
+  font-size: 20px;
   color: #4295de;
   font-weight: 700;
 }
@@ -281,10 +281,12 @@ body {
   }
 
   .default__btn {
-    font-size: 14px;
+    letter-spacing: 0.04em;
+    padding: 0.5rem 1rem;
+    /* font-size: 32px;
     padding: 0.8rem 0.2rem;
-    height: 20px;
-    width: 100px;
+    height: 40px;
+    width: 20%; */
   }
 
   .main_content__layout {
@@ -339,9 +341,8 @@ body {
   .default__btn {
     font-size: 14px;
     height: 30px;
-    padding: 0.2rem 0.5rem;
+    padding: 0.5rem 1rem;
     letter-spacing: 0.1em;
-    width: 100px;
   }
 
   .main_content__layout {
