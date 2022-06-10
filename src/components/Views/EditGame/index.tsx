@@ -105,29 +105,31 @@ const EditGame: React.FC<IDefaultAdminProps> = ({ serverController }) => {
               />
             </label>
           </div>
-          <div className="set_date_zone">
-            <label className="titles_inputs">
-              Дата жеребьевки
-              <input
-                className="input_date"
-                type="date"
-                defaultValue={gameData?.endEvent?.split('T')[0]}
-                placeholder="дд/мм/гггг"
-                {...register('endEvent', { required: true })}
-              />
-            </label>
-          </div>
-          <div className="send_date_zone">
-            <label className="titles_inputs">
-              Отправить подарок до
-              <input
-                className="input_date"
-                type="date"
-                defaultValue={gameData?.endRegistration?.split('T')[0]}
-                placeholder="дд/мм/гггг"
-                {...register('endRegistration', { required: true })}
-              />
-            </label>
+          <div className='date_zones'>
+            <div className="set_date_zone">
+              <label className="titles_inputs">
+                Дата жеребьевки
+                <input
+                  className="input_date begin"
+                  type="date"
+                  defaultValue={gameData?.endEvent?.split('T')[0]}
+                  placeholder="дд/мм/гггг"
+                  {...register('endEvent', { required: true })}
+                />
+              </label>
+            </div>
+            <div className="send_date_zone">
+              <label className="titles_inputs">
+                Отправить подарок до
+                <input
+                  className="input_date end"
+                  type="date"
+                  defaultValue={gameData?.endRegistration?.split('T')[0]}
+                  placeholder="дд/мм/гггг"
+                  {...register('endRegistration', { required: true })}
+                />
+              </label>
+            </div>
           </div>
         </section>
         <section className="recommended_cost_container">
