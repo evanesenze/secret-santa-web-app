@@ -34,7 +34,7 @@ const Header: FC<IHeaderProps> = ({ children, user, waitAuth, handleAuth, handle
 
   return (
     <React.Fragment>
-      <header className="main_header">
+      <header className={['main_header', !user ? 'header__black' : null].join(' ')}>
         <div className="main_header__logo">
           <Logo onClick={() => nav(user?.role === 'admin' ? '../admin' : '../')} />
         </div>
