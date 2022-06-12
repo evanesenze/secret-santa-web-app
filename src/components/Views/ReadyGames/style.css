@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 10%;
 }
 .games {
   font-weight: 700px;
@@ -12,8 +13,14 @@
 }
 
 .container {
-  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2%;
+  padding-top: 20px;
   flex-wrap: wrap;
+  height: 90%;
+  overflow-y: auto;
 }
 
 .default_game_card {

@@ -216,7 +216,7 @@ input:checked + .slider_round:before {
   }
 
   .input_gift_cost {
-    font-size: 24px;
+    /* font-size: 24px; */
     max-width: 65%;
   }
 

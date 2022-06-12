@@ -16,7 +16,7 @@ interface ICreateForm {
 const EditGame: React.FC<IDefaultAdminProps> = ({ serverController }) => {
   const [gameData, setGameData] = useState<IExistEvent>();
   const [eventExist, setEventExist] = useState(true);
-  const { register, handleSubmit, watch } = useForm<ICreateForm>();
+  const { register, handleSubmit, watch } = useForm<ICreateForm>({ defaultValues: { showSumPrice: true } });
   const { id } = useParams();
   const showSumPrice = watch('showSumPrice');
   const nav = useNavigate();
@@ -115,9 +115,9 @@ const EditGame: React.FC<IDefaultAdminProps> = ({ serverController }) => {
                   <input
                     className="input_date"
                     type="date"
-                    defaultValue={gameData?.endEvent?.split('T')[0]}
+                    defaultValue={gameData?.endRegistration?.split('T')[0]}
                     placeholder="дд/мм/гггг"
-                    {...register('endEvent', { required: true })}
+                    {...register('endRegistration', { required: true })}
                   />
                 </label>
               </div>
@@ -127,9 +127,9 @@ const EditGame: React.FC<IDefaultAdminProps> = ({ serverController }) => {
                   <input
                     className="input_date"
                     type="date"
-                    defaultValue={gameData?.endRegistration?.split('T')[0]}
+                    defaultValue={gameData?.endEvent?.split('T')[0]}
                     placeholder="дд/мм/гггг"
-                    {...register('endRegistration', { required: true })}
+                    {...register('endEvent', { required: true })}
                   />
                 </label>
               </div>
@@ -147,7 +147,7 @@ const EditGame: React.FC<IDefaultAdminProps> = ({ serverController }) => {
               </label>
             </div>
           </div>
-          {(!!gameData?.sumPrice || showSumPrice) && (
+          {showSumPrice && (
             <div className="gift_cost edit_game__form_input">
               <p className="title_gift_cost ">Сумма подарка</p>
               <input className="input_gift_cost" type="number" defaultValue={gameData?.sumPrice} {...register('sumPrice', { required: true })} />

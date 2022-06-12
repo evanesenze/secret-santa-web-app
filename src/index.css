@@ -11,6 +11,11 @@ body {
   height: 100%;
 }
 
+select:focus,
+input:focus {
+  outline: 1px solid #4295de;
+}
+
 #root {
   height: 100%;
   background-image: url('./assets/background.png');
@@ -199,7 +204,7 @@ body {
 
 .default_back_btn:hover {
   fill: #ffa755;
-  stroke: #723e0d;
+  stroke: white;
 }
 
 .main_content__layout_header {
@@ -207,6 +212,7 @@ body {
 }
 
 .main_content_layout_content {
+  /* overflow-y: auto; */
   padding: 1%;
   height: 90%;
 }
