@@ -7,23 +7,20 @@ interface IFindMemberProps extends IDefaultProps {
   gameData: IExistEvent;
 }
 
-const FindMember: React.FC<IFindMemberProps> = ({ serverController, user, gameData }) => {
+const FindMember: React.FC<IFindMemberProps> = ({ gameData }) => {
   const [searchInput, setSearchInput] = useState('');
   const searchValue = useDebounce(searchInput, 500);
   const [members, setMembers] = useState<any[]>([]);
+  // console.log(gameData);
 
-  const searchFilter = (value: any, index: number, array: any[]) => {
-    const { surname, name, patronymic } = value.memberView;
-    const text = `${surname} ${name} ${patronymic}`;
-    console.log(text);
-    console.log(value);
-    console.log(searchValue);
-    return text.includes(searchValue);
+  const searchFilter = (value: any) => {
+    const { memberSender, memberRecipient } = value;
+    const senderName = `${memberSender.surname} ${memberSender.name} ${memberSender.patronymic}`;
+    const recipientName = `${memberRecipient.surname} ${memberRecipient.name} ${memberRecipient.patronymic}`;
+    return senderName.includes(searchValue) || recipientName.includes(searchValue);
   };
 
-  useEffect(() => {
-    setMembers(gameData.memberView?.filter(searchFilter));
-  }, [searchValue]);
+  useEffect(() => setMembers(gameData.memberView?.filter(searchFilter)), [searchValue]);
 
   return (
     <>
@@ -45,17 +42,23 @@ const FindMember: React.FC<IFindMemberProps> = ({ serverController, user, gameDa
         <input className="input_fullname" type="text" placeholder="введите ФИО участника" onChange={(e) => setSearchInput(e.target.value)} />
         {/* <button className="button_find"></button> */}
       </section>
-      <section className="container_members">
+      <section className="container_members_table">
+        <div className="members_table__row members_table__title">
+          <div>#</div>
+          <div>Отправитель</div>
+          <div>Получатель</div>
+        </div>
+
         {members.map((item, index) => {
-          const { memberView } = item;
-          const name = `${memberView.surname} ${memberView.name} ${memberView.patronymic}`;
-          console.log(memberView);
+          const { memberRecipient, memberSender } = item;
+          const senderName = `${memberSender.surname} ${memberSender.name} ${memberSender.patronymic}`;
+          const recipientName = `${memberRecipient.surname} ${memberRecipient.name} ${memberRecipient.patronymic}`;
+          // console.log(memberView);
           return (
-            <div key={index} className="default_player_card">
-              <div className="default_player_card__image">
-                <img src={playerIcon} />
-              </div>
-              <div className="default_player_card__name">{name}</div>
+            <div key={index} className="members_table__row">
+              <div>{index + 1}</div>
+              <div>{senderName}</div>
+              <div>{recipientName}</div>
             </div>
           );
         })}
