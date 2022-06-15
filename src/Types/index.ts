@@ -48,7 +48,6 @@ interface IWishes {
 
 interface IUser {
   email: string;
-  // exp: number;
   role: UserRole;
   token: string;
   UserID: string;

@@ -1,59 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
-// import { getEvent } from '../../../services/ServerController';
 import './style.css';
 import Loader from '../../Loader';
 
-interface IWishesForm extends IExistPreferences {}
-
 interface IGetUserPreferencesResponse {
-  // state: UserPreferencesState;
   message: string;
   wishes: IPreferences;
 }
-
-type UserPreferencesState = 'some';
 
 const Wishes: React.FC<IDefaultProps> = ({ serverController, user }) => {
   const { id } = useParams();
   const [preferences, setPreferences] = useState<IPreferences>();
   const [preferencesExist, setPreferencesExist] = useState(true);
-  const [gameData, setGameData] = useState<IExistEvent>();
   const [eventExist, setEventExist] = useState(true);
   const [isAdmin] = useState(user.role === 'admin');
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IWishesForm>({ mode: 'onBlur' });
+  const { register, handleSubmit } = useForm<IExistPreferences>({ mode: 'onBlur' });
   const nav = useNavigate();
 
-  const submit: SubmitHandler<IWishesForm> = async (data) => {
+  const submit: SubmitHandler<IExistPreferences> = async (data) => {
     if (!id) throw new Error('Event not exist');
-    console.log(preferencesExist);
     if (preferencesExist) {
       const preferencesEdited = await serverController.updateUserPreferences(id, data);
-      console.log(preferencesEdited);
       if (!preferencesEdited.ok) return alert(`Ошибка при изменении. ${preferencesEdited.response?.message}`);
-      // console.log(res);
     } else {
-      const preferencesSaved = await serverController.saveUserPreferences(id, data);
-      console.log(preferencesSaved);
+      await serverController.saveUserPreferences(id, data);
     }
     nav(`../game/${id}`);
-    console.log(data);
   };
 
   const loadGameData = async () => {
     if (!id) return setEventExist(false);
     if (isAdmin) {
-      const event = await serverController.getEvent(id).catch(console.log);
-      if (!event.ok) return setEventExist(false);
-      console.log(event);
-      setGameData(event.response as IExistEvent);
+      nav(`../game/${id}`);
     } else {
-      const preferences = await serverController.getUserPreferences(id).catch(console.log);
+      const preferences = await serverController.getUserPreferences(id).catch(console.error);
       if (!preferences.ok) {
         setPreferences({});
         return setPreferencesExist(false);
@@ -61,21 +42,12 @@ const Wishes: React.FC<IDefaultProps> = ({ serverController, user }) => {
       const { message, wishes } = preferences.response as IGetUserPreferencesResponse;
       if (message === 'Member joins for the first time') setPreferencesExist(false);
       setPreferences(wishes);
-      // if (!event.ok) return nav(`../myWishes/${id}`);
-      console.log(preferences);
-      // if (!event.ok) return setEventExist(false);
-      // setGameData(event.response as IExistEvent);
     }
   };
 
   useEffect(() => {
     loadGameData();
   }, []);
-  // console.log(id);
-
-  const saveWishes = () => {
-    nav(`../game/${id}`);
-  };
 
   return (
     <div className="wishes_content">

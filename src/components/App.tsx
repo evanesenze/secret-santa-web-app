@@ -1,25 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import jwtDecode from 'jwt-decode';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Cookies, useCookies } from 'react-cookie';
+import { useCookies } from 'react-cookie';
 import Header from './Header';
 import Main from './Views/Main';
 import Home from './Views/Home';
-// import Games from './Views/Games';
 
 import ReadyGames from './Views/ReadyGames';
-// import GameWasCreated from './Views/GameWasCreated';
-// import GameWasCreatedWithMembers from './Views/GameWasCreatedWithMembers';
-// import FindMember from './Views/FindMember';
 import EditGame from './Views/EditGame';
 
-// import DesignatedUser from './Views/DesignatedUser';
 import GameMain from './Views/GameMain';
 import Wishes from './Views/Wishes';
 import { ServerController } from '../services/ServerController';
-// import Loader from './Loader';
 
-function App() {
+const App: React.FC = () => {
   const [{ token }, setCookie, removeCookie] = useCookies(['token']);
   const [waitAuth, setWaitAuth] = useState(!!token);
   const [user, setUser] = useState<IUser>();
@@ -35,7 +29,6 @@ function App() {
       role,
       token,
     };
-    // console.log(user);
     serverController.setUserParams(user);
     const userInfo = await serverController.getUserInfo(user.UserID);
     if (!userInfo) throw new Error('Wrong token');
@@ -45,8 +38,7 @@ function App() {
   };
 
   const handleAuth = async (username: string, password: string): Promise<boolean> => {
-    const res = await serverController.login(username, password).catch(console.log); // 'Curie', 'password'
-    // console.log(res);
+    const res = await serverController.login(username, password).catch(console.error);
     if (!res.ok) {
       alert(res.response?.message);
       return false;
@@ -62,13 +54,8 @@ function App() {
       return false;
     }
     if (!confirm('Покинуть игру?')) return false;
-    console.log('exit');
-    const res = await serverController.exitGame(eventId).catch(console.log); // 'Curie', 'password'
-    console.log(res);
+    const res = await serverController.exitGame(eventId).catch(console.error);
     return res.ok;
-    // if (!res.ok) return;
-    // const { token } = res.response;
-    // saveUser(token);
   };
 
   const handleLogout = () => {
@@ -79,12 +66,7 @@ function App() {
 
   useEffect(() => {
     if (token) saveUser(token);
-    // const a = new ServerController('', 'user');
-    // login('riemann', 'password').then(console.log).catch(console.log);
-    // loadGames();
   }, []);
-
-  // useEffect(() => {}, [user]);
 
   return (
     <Router>
@@ -107,20 +89,9 @@ function App() {
             </>
           )}
         </Routes>
-        {/* <Authorization /> */}
-        {/* <GameMain /> */}
-        {/* <Wishes /> */}
-        {/* <Main /> */}
-        {/* <GameWasCreated /> */}
-        {/* <GameWasCreatedWithMembers /> */}
-        {/* <Games /> */}
-        {/* <ReadyGames /> */}
-        {/* <Home /> */}
-        {/* <DesignatedUser /> */}
-        {/* <FindMember /> */}
       </Header>
     </Router>
   );
-}
+};
 
 export default App;

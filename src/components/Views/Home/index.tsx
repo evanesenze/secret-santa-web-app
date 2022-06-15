@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './style.css';
 
-const Home: FC = () => {
+const Home: React.FC = () => {
   return (
     <div className="home_view">
       <span>Тайный санта</span>

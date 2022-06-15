@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-// import ContentLayout from '../../ContentLayout';
 import playerIcon from '../../../assets/playerIcon.png';
 import Loader from '../../Loader';
 import './style.css';
 
-interface IDesignatedUserProps extends IDefaultProps {
-  // gameData: IExistEvent;
-}
-
-const DesignatedUser: React.FC<IDesignatedUserProps> = ({ serverController, user }) => {
+const DesignatedUser: React.FC<IDefaultProps> = ({ serverController }) => {
   const { id } = useParams();
   const [recipientInfo, setRecipientInfo] = useState<IRecipientInfo>();
-  console.log(id);
 
   const loadRecipientInfo = async () => {
     if (!id) return;
@@ -34,7 +28,6 @@ const DesignatedUser: React.FC<IDesignatedUserProps> = ({ serverController, user
             <div style={{ width: '100%' }} className="default_player_card__image">
               <img src={playerIcon} />
             </div>
-            {/* <div className="default_player_card__name">{recipientInfo.name}</div> */}
           </div>
           <div className="designated_user_content_info">
             <div className="designated_user_content_info_text">

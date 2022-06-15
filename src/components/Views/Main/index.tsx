@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Loader from '../../Loader';
-// import { getEvent } from '../../../services/ServerController';
 
 import './style.css';
 
@@ -15,14 +14,11 @@ const Main: React.FC<IDefaultProps> = ({ serverController, user }) => {
   const loadGameData = async () => {
     if (!id) return setEventExist(false);
     if (user.role === 'admin') {
-      const event = await serverController.getEvent(id).catch(console.log);
+      const event = await serverController.getEvent(id).catch(console.error);
       if (!event.ok) return setEventExist(false);
-      console.log(event);
       setGameData(event.response as IExistEvent);
     } else if (user.role === 'user') {
-      const event = await serverController.getUserEvent(id).catch(console.log);
-      // if (!event.ok) return nav(`../myWishes/${id}`);
-      console.log(event);
+      const event = await serverController.getUserEvent(id).catch(console.error);
       if (!event.ok) return setIsMemberGame(false);
       setGameData(event.response as IExistEvent);
     }
@@ -64,7 +60,6 @@ const Main: React.FC<IDefaultProps> = ({ serverController, user }) => {
             </button>
           </>
         )}
-        {/* <button className="default__btn">перейти к игре</button> */}
       </div>
     </div>
   );

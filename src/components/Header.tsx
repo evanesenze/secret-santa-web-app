@@ -12,21 +12,21 @@ interface IHeaderProps {
   handleExitGame(eventId?: string): Promise<boolean>;
   handleLogout(): void;
 }
-// withExitBtn={user.role === 'user' && d === 'game'}
+
+const withoutLayout = ['/', '/admin', '/login'];
+
 const Header: FC<IHeaderProps> = ({ children, user, waitAuth, handleAuth, handleExitGame, handleLogout }) => {
   const location = useLocation();
   const nav = useNavigate();
-  const withoutLayout = ['/', '/admin', '/login'];
-  // const d = nav.pathname.split('/')[1];
+
   const getContent = () => {
-    const d = location.pathname.split('/')[1];
+    const endPoint = location.pathname.split('/')[1];
     if (!user) return waitAuth ? <Loader /> : <Authorization handleAuth={handleAuth} />;
-    if (d === 'joinGame') return children;
-    // if (d === 'game' && !user.activeEvent) return <div>Загрузка...</div>;
+    if (endPoint === 'joinGame') return children;
     return withoutLayout.includes(location.pathname) ? (
       children
     ) : (
-      <ContentLayout endPoint={d} user={user} handleExitGame={handleExitGame}>
+      <ContentLayout endPoint={endPoint} user={user} handleExitGame={handleExitGame}>
         {children}
       </ContentLayout>
     );

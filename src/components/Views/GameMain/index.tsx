@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import playerIcon from '../../../assets/playerIcon.png';
 import { useParams, useNavigate } from 'react-router-dom';
-// import { getEvent } from '../../../services/ServerController';
 import './style.css';
 import FindMember from '../FindMember';
 import DesignatedUser from '../DesignatedUser';
@@ -19,27 +18,22 @@ const GameMain: React.FC<IDefaultProps> = ({ serverController, user, setUser }) 
   const loadGameData = async () => {
     if (!id) return setEventExist(false);
     if (isAdmin) {
-      const event = await serverController.getEvent(id).catch(console.log);
+      const event = await serverController.getEvent(id).catch(console.error);
       if (!event.ok) return setEventExist(false);
-      console.log(event);
       setGameData(event.response as IExistEvent);
     } else {
-      const event = await serverController.getUserEvent(id).catch(console.log);
+      const event = await serverController.getUserEvent(id).catch(console.error);
       if (!event.ok) return nav(`../myWishes/${id}`);
-      console.log(event);
       const existEvent = event.response as IExistEvent;
       existEvent.id = id;
       setUser?.((x) => (x ? { ...x, activeEvent: existEvent } : undefined));
-      // if (!event.ok) return setEventExist(false);
       setGameData(existEvent);
     }
   };
 
   useEffect(() => {
     if (!gameData) return;
-    // gameData.reshuffle = true;
     setIsReshuffle(gameData.reshuffle);
-    // if (gameData?.reshuffle) console.log('прошло');
   }, [gameData]);
 
   useEffect(() => {
@@ -93,10 +87,7 @@ const GameMain: React.FC<IDefaultProps> = ({ serverController, user, setUser }) 
       </div>
     </>
   );
-  // console.log(gameData);
-  // console.log(isReshuffle);
-  // console.log(isAdmin);
-  // console.log(id);
+
   return (
     <>
       {!eventExist && <div>Bad</div>}

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-// import { getEvents } from '../../../services/ServerController';
 import cardImage from '../../../assets/snowman.png';
 
 import './style.css';
@@ -10,8 +9,8 @@ const ReadyGames: React.FC<IDefaultAdminProps> = ({ serverController }) => {
   const nav = useNavigate();
 
   const loadEvents = async () => {
-    const events = await serverController.getEvents();
-    console.log(events.response);
+    const events = await serverController.getEvents().catch(console.error);
+    if (!events.ok) return;
     setEvents(events.response);
   };
 

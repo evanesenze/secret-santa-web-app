@@ -16,7 +16,6 @@ const Authorization: React.FC<IAuthorizationProps> = ({ handleAuth }) => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm<IAuthorizationForm>({ mode: 'onBlur' });
   const [authPending, setAuthPending] = useState(false);

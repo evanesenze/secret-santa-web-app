@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
-// import { saveEvent, getEvent, editEvent } from '../../../services/ServerController';
 import './style.css';
 import Loader from '../../Loader';
 
@@ -39,7 +38,7 @@ const EditGame: React.FC<IDefaultAdminProps> = ({ serverController }) => {
           return res.response.id;
         })
         .then((id) => nav(`../game/${id}`))
-        .catch((error) => console.log(error));
+        .catch(console.error);
     } else {
       const existEvent: IExistEvent = {
         id,
@@ -67,14 +66,6 @@ const EditGame: React.FC<IDefaultAdminProps> = ({ serverController }) => {
     if (!data.ok) return setEventExist(false);
     const gameData = data.response as IExistEvent;
     setGameData(gameData);
-    // console.log(new Date(gameData?.endRegistration).toLocaleDateString('ru', {}));
-    // reset({
-    //   description: gameData?.description,
-    //   endEvent: gameData?.endEvent?.split('T')[0],
-    //   endRegistration: gameData?.endRegistration?.split('T')[0],
-    //   showSumPrice: !!gameData?.sumPrice,
-    //   sumPrice: gameData?.sumPrice,
-    // });
   };
 
   useEffect(() => {
@@ -83,8 +74,7 @@ const EditGame: React.FC<IDefaultAdminProps> = ({ serverController }) => {
 
   const deleteEvent = async (id: string) => {
     if (!confirm('Вы точно хотите удалить игру?')) return;
-    const res = await serverController.deleteEvent(id).catch(console.log);
-    console.log(res);
+    await serverController.deleteEvent(id).catch(console.error);
     nav('../admin/games');
   };
 
@@ -157,8 +147,6 @@ const EditGame: React.FC<IDefaultAdminProps> = ({ serverController }) => {
             </div>
           )}
         </div>
-        {/* <section className="inputs_container"></section>
-        <section className="recommended_cost_container"></section> */}
         <div className="edit_game__buttons">
           <button className="default__btn" type="submit">
             {id ? 'Сохранить изменения' : 'Создать игру'}
@@ -180,7 +168,6 @@ const EditGame: React.FC<IDefaultAdminProps> = ({ serverController }) => {
 
   return (
     <>
-      {/* {!eventExist && <div>Bad</div>} */}
       {!gameData && eventExist && <Loader />}
       {(!!gameData || !eventExist) && EditGameContent}
     </>

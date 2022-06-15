@@ -1,6 +1,5 @@
 class ServerController implements IServerController {
   private serverUrl = 'https://localhost:5001/';
-  private userSignIn = false;
   private token?: string;
   private role?: UserRole;
   private userId?: string;
@@ -9,37 +8,23 @@ class ServerController implements IServerController {
     const { token, role, UserID } = user;
     this.token = token;
     this.role = role;
-    this.userSignIn = true;
     this.userId = UserID;
   }
 
-  // Authorization: `Bearer ${this.token}`
-
   private async execute(uri: string, config: RequestInit) {
     config.headers = { ...config.headers, Authorization: `Bearer ${this.token}` };
-    // console.log(this.token);
-    const res = await fetch(this.serverUrl + uri, config).catch(console.log);
+    const res = await fetch(this.serverUrl + uri, config).catch(console.error);
     if (!res) return { ok: false };
-    // console.log(res);
     const obj = await res
       .json()
       .then((response) => ({ ok: res.ok, response }))
       .catch((error) => ({ ok: res.ok, error }));
-    // console.log(obj);
     return obj;
-    // return fetch(this.serverUrl + uri, config)
-    //   .then(async (res) => {
-    //     // res.text().then(console.log);
-    //     if (res.status === 200) return { ok: true, response: await res.json() };
-    //     return { ok: false, ...(await res.json()) };
-    //   })
-    //   .catch((error) => ({ ok: false, error: error.response?.data ?? error.message }));
   }
 
   public getUserInfo(userId: string) {
     const config: RequestInit = {
       method: 'GET',
-      // headers: { Authorization: `Bearer ${this.token}` },
     };
     return this.execute(`user/${userId}/`, config);
   }
@@ -48,7 +33,6 @@ class ServerController implements IServerController {
     if (!this.userId) throw new Error('No user id');
     const config: RequestInit = {
       method: 'GET',
-      // headers: { Authorization: `Bearer ${this.token}` },
     };
     return this.execute(`user/${this.userId}/event/${eventId}`, config);
   }
@@ -57,10 +41,6 @@ class ServerController implements IServerController {
     if (!this.userId) throw new Error('No user id');
     const config: RequestInit = {
       method: 'PUT',
-      // body: JSON.stringify(preferences),
-      // headers: {
-      //   'Content-Type': 'application/json',
-      // },
     };
     return this.execute(`user/${this.userId}/exit/${eventId}`, config);
   }
@@ -69,7 +49,6 @@ class ServerController implements IServerController {
     if (!this.userId) throw new Error('No user id');
     const config: RequestInit = {
       method: 'GET',
-      // headers: { Authorization: `Bearer ${this.token}` },
     };
     return this.execute(`user/${this.userId}/event/${eventId}/recipientInfo`, config);
   }
@@ -78,7 +57,6 @@ class ServerController implements IServerController {
     if (!this.userId) throw new Error('No user id');
     const config: RequestInit = {
       method: 'GET',
-      // headers: { Authorization: `Bearer ${this.token}` },
     };
     return this.execute(`user/${this.userId}/preferences/${eventId}`, config);
   }
@@ -110,7 +88,6 @@ class ServerController implements IServerController {
   public getEvent(eventId: string) {
     const config: RequestInit = {
       method: 'GET',
-      // headers: { Authorization: `Bearer ${this.token}` },
     };
     return this.execute(`event/${eventId}/`, config);
   }

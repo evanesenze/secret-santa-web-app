@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
+import React from 'react';
 
 import './style.css';
 
-const Games: FC = () => {
+const Games: React.FC = () => {
   return (
     <div className="main_content__layout">
       <div className="games_view">
