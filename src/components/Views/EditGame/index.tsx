@@ -143,7 +143,7 @@ const EditGame: React.FC<IDefaultAdminProps> = ({ serverController }) => {
               <input className="input_gift_cost" type="number" defaultValue={gameData?.sumPrice} {...register('sumPrice', { required: true })} />
               <select className="select_currency" name="currency" id="currency">
                 <option className="currency">Руб</option>
-                <option className="currecny">USD</option>
+                <option className="currency">USD</option>
               </select>
             </div>
           )}
