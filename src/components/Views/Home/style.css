@@ -6,7 +6,7 @@
   align-items: center;
   background-image: url('../../../assets/woman.png');
   background-repeat: no-repeat;
-  background-position: right 10% center;
+  background-position: right center;
 }
 
 .home_view span {
@@ -93,7 +93,6 @@
   .home_view__btn_create {
     top: 93%;
     left: 25%;
-
   }
 
   .home_view__btn_games {

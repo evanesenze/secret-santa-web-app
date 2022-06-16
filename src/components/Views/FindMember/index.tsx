@@ -20,19 +20,19 @@ const FindMember: React.FC<IFindMemberProps> = ({ gameData }) => {
   useEffect(() => setMembers(gameData.memberView?.filter(searchFilter)), [searchValue]);
 
   return (
-    <>
+    <div style={{ height: '100%', width: '100%', paddingTop: '1%' }}>
       <section className="find_member__container">
-        <div className="info_window">
-          <p className="info_numbers">{new Date(String(gameData?.endRegistration)).toLocaleDateString()}</p>
-          <span className="info_description">Дата жеребьёвки</span>
+        <div className="default_info_card">
+          <div className="default_info_card__title">{new Date(String(gameData?.endRegistration)).toLocaleDateString()}</div>
+          <div className="default_info_card__description">Дата жеребьёвки</div>
         </div>
-        <div className="info_window">
-          <p className="info_numbers">{new Date(String(gameData?.endEvent)).toLocaleDateString()}</p>
-          <span className="info_description">Отправить подарки до</span>
+        <div className="default_info_card">
+          <div className="default_info_card__title">{new Date(String(gameData?.endEvent)).toLocaleDateString()}</div>
+          <div className="default_info_card__description">Отправить подарки до</div>
         </div>
-        <div className="info_window">
-          <p className="info_numbers">{gameData.membersCount}</p>
-          <span className="info_description">Кол-во участников</span>
+        <div className="default_info_card">
+          <div className="default_info_card__title">{gameData.membersCount}</div>
+          <div className="default_info_card__description">Кол-во участников</div>
         </div>
       </section>
       <section className="container_fullname">
@@ -61,7 +61,7 @@ const FindMember: React.FC<IFindMemberProps> = ({ gameData }) => {
           );
         })}
       </section>
-    </>
+    </div>
   );
 };
 

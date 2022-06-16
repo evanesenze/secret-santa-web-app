@@ -8,9 +8,10 @@
 }
 
 .authorization_box {
+  position: relative;
   min-width: 25%;
   min-height: 45%;
-  margin-bottom: 2.5%;
+  /* margin-bottom: 2.5%; */
   padding: 2%;
   background-color: #ffffff;
   border-radius: 30px;
@@ -20,15 +21,15 @@
 .authorization_box::after {
   content: url('../../../assets/gift.png');
   position: absolute;
-  top: 24%;
-  left: 35%;
+  top: -5rem;
+  left: -3rem;
 }
 
 .authorization_box::before {
   content: url('../../../assets/snowman_1.png');
   position: absolute;
-  top: 66%;
-  left: 59%;
+  bottom: -2rem;
+  right: -3rem;
 }
 
 .authorization_title {

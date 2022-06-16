@@ -80,7 +80,7 @@ const EditGame: React.FC<IDefaultAdminProps> = ({ serverController }) => {
 
   const EditGameContent = (
     <>
-      <h1 className="title">{id ? 'Изменение' : 'Создание'} игры</h1>
+      <h1 className="title edit_game__title">{id ? 'Изменение' : 'Создание'} игры</h1>
       <form className="edit_game__form" onSubmit={handleSubmit(submit)}>
         <div className="edit_game__form_sections">
           <div className="edit_game__form_section">

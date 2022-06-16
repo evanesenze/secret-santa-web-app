@@ -12,7 +12,8 @@ const GameMain: React.FC<IDefaultProps> = ({ serverController, user, setUser }) 
   const [isReshuffle, setIsReshuffle] = useState(false);
   const [eventExist, setEventExist] = useState(true);
   const [isAdmin] = useState(user.role === 'admin');
-
+  const [url] = useState(process.env.REACT_APP_API_ADDRESS ?? 'http://51.250.18.152/');
+  console.log('url', url);
   const nav = useNavigate();
 
   const loadGameData = async () => {
@@ -41,7 +42,7 @@ const GameMain: React.FC<IDefaultProps> = ({ serverController, user, setUser }) 
   }, []);
 
   const GameView = (
-    <>
+    <div style={{ height: '100%', width: '100%', padding: '1%' }}>
       <div className="info_card__group">
         <div className="default_info_card">
           <div className="default_info_card__title">{gameData?.sumPrice ?? 0}</div>
@@ -61,9 +62,7 @@ const GameMain: React.FC<IDefaultProps> = ({ serverController, user, setUser }) 
         </div>
       </div>
       <div className="game_main_content__my_wishes">
-        <div className="default_input game_main_content__my_wishes_text">
-          {user.role === 'user' ? gameData?.preference : `http://localhost:3000/joinGame/${id}`}
-        </div>
+        <div className="default_input game_main_content__my_wishes_text">{user.role === 'user' ? gameData?.preference : `${url}joinGame/${id}`}</div>
       </div>
       {user.role === 'user' && (
         <div className="game_main_content__edit_wishes_btn">
@@ -85,7 +84,7 @@ const GameMain: React.FC<IDefaultProps> = ({ serverController, user, setUser }) 
           );
         })}
       </div>
-    </>
+    </div>
   );
 
   return (
