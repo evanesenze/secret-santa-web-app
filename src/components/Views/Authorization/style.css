@@ -128,7 +128,7 @@
 
   .authorization_box {
     min-width: 90%;
-    min-height: 60%;
+    min-height: 50%;
   }
 
   .authorization_box::after {

@@ -1,5 +1,5 @@
 .home_view {
-  height: 90%;
+  min-height: 90%;
   width: 100%;
   display: flex;
   justify-content: flex-start;
@@ -104,9 +104,10 @@
 
 @media screen and (max-width: 479px) {
   .home_view {
+    min-height: 80%;
     flex-direction: column;
-    background-position: bottom 20% center;
-    background-size: 55vh;
+    background-position: bottom 30% center;
+    background-size: 50vh;
   }
 
   .home_view span {
@@ -131,7 +132,7 @@
 
   .home_view__btn_games {
     top: 90%;
-    left: 70%;
+    left: 65%;
   }
 
   .home_view__btn_create,

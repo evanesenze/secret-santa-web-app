@@ -26,7 +26,7 @@
   font-style: normal;
   font-weight: 700;
   font-size: 40px;
-  line-height: 68px;
+  line-height: 50px;
   letter-spacing: 0.04em;
   color: #1d71b8;
 }
@@ -176,11 +176,11 @@ input:checked + .slider_round:before {
   max-width: 50%;
   height: 3rem;
   padding: 12px;
-  font-weight: 700;
+  /* font-weight: 700; */
   background: #ffffff;
   border: 1px solid #b1ddff;
   border-radius: 0.6rem;
-  color: #4295de;
+  color: #000000;
 }
 
 .select_currency {
@@ -212,7 +212,7 @@ input:checked + .slider_round:before {
   }
 
   .input_title_game {
-    font-size: 14px;
+    font-size: 2vw;
   }
 
   .input_gift_cost {
@@ -240,24 +240,26 @@ input:checked + .slider_round:before {
   }
 
   .titles_inputs {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .input_title_game {
     width: 100%;
-    height: 2rem;
+    font-size: 20px;
+    height: 2.2rem;
     margin-top: 1%;
   }
 
   .input_date {
     width: 100%;
-    height: 2rem;
+    font-size: 20px;
+    height: 2.2rem;
     margin-top: 1%;
   }
 
   .title_recommended_cost {
     margin-top: 5%;
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .recommended_cost {
@@ -265,26 +267,28 @@ input:checked + .slider_round:before {
   }
 
   .recommended_cost span {
-    font-size: 11px;
-    line-height: 11px;
+    font-size: 14px;
+    line-height: 14px;
   }
 
   .title_gift_cost {
-    font-size: 16px;
+    font-size: 18px;
+    margin-top: 10%;
     margin-bottom: 0.5%;
   }
 
   .input_gift_cost {
-    height: 2rem;
+    height: 2.2rem;
     font-size: 20px;
   }
 
   .select_currency {
     padding: 9px;
-    height: 2rem;
+    height: 2.2rem;
   }
 
   .edit_game__buttons {
-    margin-top: 5%;
+    margin-top: 10%;
+    gap: 1%;
   }
 }

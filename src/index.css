@@ -90,7 +90,7 @@ input:focus {
 }
 
 .main_content__layout {
-  height: 90%;
+  min-height: 90%;
   width: 100%;
   padding: 1% 2%;
   margin: 3%;
@@ -331,8 +331,9 @@ input:focus {
   .default_input {
     margin-top: 0rem;
     width: 100%;
-    height: 2rem;
-    font-size: 16px;
+    height: 2.5rem;
+    font-size: 4vw;
+    padding: 0.5rem;
   }
 
   .main_header__logo {
